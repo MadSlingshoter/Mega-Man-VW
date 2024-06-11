@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://gsvrly5jfckj"]
+
+[ext_resource type="Script" path="res://Scripts/state.gd" id="1_eq0q2"]
+
+[node name="BossDeath" type="Node"]
+script = ExtResource("1_eq0q2")

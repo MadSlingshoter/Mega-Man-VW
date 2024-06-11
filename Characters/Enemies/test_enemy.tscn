@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://usbqoqpeuquk"]
+
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="1_5vnfm"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="1_ik56x"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="3_x0uyb"]
+[ext_resource type="PackedScene" uid="uid://n4ylhrx2ol6" path="res://Characters/Components/shield_box.tscn" id="4_5qlc0"]
+
+[node name="TestEnemy" type="CharacterBody2D"]
+collision_layer = 4
+
+[node name="Health" parent="." instance=ExtResource("1_ik56x")]
+
+[node name="ContactBox" parent="." instance=ExtResource("3_x0uyb")]
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("1_5vnfm")]
+position = Vector2(733, 259)
+health = NodePath("../Health")
+
+[node name="ShieldBox" parent="." instance=ExtResource("4_5qlc0")]

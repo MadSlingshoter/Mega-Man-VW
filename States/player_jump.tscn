@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxnykrln47o2n"]
+
+[ext_resource type="Script" path="res://Scripts/player_jump.gd" id="1_avt82"]
+
+[node name="PlayerJump" type="Node"]
+script = ExtResource("1_avt82")
+can_shoot = true

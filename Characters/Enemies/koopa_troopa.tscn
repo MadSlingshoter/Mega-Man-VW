@@ -1,0 +1,139 @@
+[gd_scene load_steps=19 format=3 uid="uid://bxqsrwt4d80hs"]
+
+[ext_resource type="Script" path="res://Scripts/koopa_troopa.gd" id="1_2nsbv"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_gmnby"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="3_o4o8s"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="4_fr81a"]
+[ext_resource type="PackedScene" uid="uid://n4ylhrx2ol6" path="res://Characters/Components/shield_box.tscn" id="5_0v7ea"]
+[ext_resource type="Texture2D" uid="uid://ds7dkwopouxrg" path="res://Art/Sprites/Enemies/Koopa Hide.png" id="6_rx5ef"]
+[ext_resource type="Texture2D" uid="uid://bbmgy81kgsswu" path="res://Art/Sprites/Enemies/Koopa Walk.png" id="7_tc77u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftm2g"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bi8en"]
+size = Vector2(16, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lq4l"]
+size = Vector2(16, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ma6cq"]
+size = Vector2(16, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx0f5"]
+size = Vector2(16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3h0s"]
+atlas = ExtResource("6_rx5ef")
+region = Rect2(0, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amdfe"]
+atlas = ExtResource("6_rx5ef")
+region = Rect2(16, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_528ck"]
+atlas = ExtResource("6_rx5ef")
+region = Rect2(0, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fys5l"]
+atlas = ExtResource("7_tc77u")
+region = Rect2(0, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u13vo"]
+atlas = ExtResource("7_tc77u")
+region = Rect2(16, 0, 16, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ab01t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3h0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amdfe")
+}],
+"loop": true,
+"name": &"emerging",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_528ck")
+}],
+"loop": true,
+"name": &"hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fys5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u13vo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="KoopaTroopa" type="CharacterBody2D"]
+position = Vector2(0, -12)
+collision_layer = 4
+script = ExtResource("1_2nsbv")
+SPEED = 40.0
+MAX_HIDE_TIME = 1.6
+MAX_EMERGING_TIME = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_ftm2g")
+
+[node name="Health" parent="." instance=ExtResource("2_gmnby")]
+MAX_HEALTH = 2
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_o4o8s")]
+health = NodePath("../Health")
+
+[node name="CollisionShapeWalk" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_bi8en")
+
+[node name="ContactBox" parent="." instance=ExtResource("4_fr81a")]
+CONTACT_DAMAGE = 4
+
+[node name="CollisionShapeWalk" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_0lq4l")
+
+[node name="CollisionShapeHide" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_ma6cq")
+disabled = true
+
+[node name="ShieldBox" parent="." instance=ExtResource("5_0v7ea")]
+
+[node name="CollisionShapeHide" type="CollisionShape2D" parent="ShieldBox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_xx0f5")
+disabled = true
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ab01t")
+animation = &"emerging"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2.98023e-07, 1.5)
+scale = Vector2(0.7, 1.05)
+
+[node name="RayCastSide" type="RayCast2D" parent="."]
+position = Vector2(0, 2)
+target_position = Vector2(8, 0)
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+position = Vector2(10, -10)
+target_position = Vector2(0, 28)
+hit_from_inside = true
+
+[connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

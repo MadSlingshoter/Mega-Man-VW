@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://4jfqdfp0tvxe"]
+
+[ext_resource type="Script" path="res://Scripts/player_fall.gd" id="1_odalu"]
+
+[node name="PlayerFall" type="Node"]
+script = ExtResource("1_odalu")
+can_shoot = true

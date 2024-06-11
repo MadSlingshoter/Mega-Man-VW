@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://8be5jt1j70dj"]
+
+[ext_resource type="Script" path="res://Scripts/mega_buster.gd" id="1_vfkug"]
+[ext_resource type="Texture2D" uid="uid://xfp2k52xsdrb" path="res://Art/Sprites/Weapons/Basic_Shot.png" id="2_0wu23"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4vlgm"]
+radius = 3.0
+height = 8.0
+
+[node name="MegaBuster" type="Area2D" node_paths=PackedStringArray("sprite", "visible_on_screen_notifier")]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_vfkug")
+SPEED = 1.5
+DAMAGE = 1
+sprite = NodePath("Sprite2D")
+visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4vlgm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0wu23")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(0.4, 0.3)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

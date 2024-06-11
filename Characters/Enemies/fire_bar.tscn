@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://cta22d0u0444"]
+
+[ext_resource type="Texture2D" uid="uid://djnx810qmave2" path="res://Art/Sprites/Enemies/Firebar_Base.png" id="1_00x7j"]
+[ext_resource type="Script" path="res://Scripts/fire_bar.gd" id="1_h836g"]
+[ext_resource type="Texture2D" uid="uid://bn1ofwxd1gklx" path="res://Art/Sprites/Enemies/Firebar Bar.png" id="2_ynybs"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="4_kytkj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqfeh"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e05dg"]
+atlas = ExtResource("2_ynybs")
+region = Rect2(0, 0, 8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12sh3"]
+atlas = ExtResource("2_ynybs")
+region = Rect2(8, 0, 8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blbag"]
+atlas = ExtResource("2_ynybs")
+region = Rect2(16, 0, 8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5gh5"]
+atlas = ExtResource("2_ynybs")
+region = Rect2(24, 0, 8, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxtx8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e05dg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12sh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blbag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5gh5")
+}],
+"loop": true,
+"name": &"fire_spin",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clhsk"]
+size = Vector2(8, 48)
+
+[node name="FireBar" type="StaticBody2D"]
+script = ExtResource("1_h836g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_00x7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eqfeh")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lxtx8")
+animation = &"fire_spin"
+frame_progress = 0.00513304
+offset = Vector2(0, -20)
+
+[node name="ContactBox" parent="." instance=ExtResource("4_kytkj")]
+CONTACT_DAMAGE = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_clhsk")

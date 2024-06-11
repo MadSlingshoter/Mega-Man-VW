@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpan111q4rm5f"]
+
+[ext_resource type="Script" path="res://Scripts/bowserman_hop.gd" id="1_8dpsu"]
+
+[node name="BowsermanHop" type="Node"]
+script = ExtResource("1_8dpsu")

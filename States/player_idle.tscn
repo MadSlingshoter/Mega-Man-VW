@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8m5mvq8oe0fo"]
+
+[ext_resource type="Script" path="res://Scripts/player_idle.gd" id="1_k618t"]
+
+[node name="PlayerIdle" type="Node"]
+script = ExtResource("1_k618t")
+can_shoot = true

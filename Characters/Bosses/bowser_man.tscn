@@ -1,0 +1,330 @@
+[gd_scene load_steps=42 format=3 uid="uid://d3fini7tuvhkp"]
+
+[ext_resource type="Script" path="res://Scripts/bowser_man.gd" id="1_0373q"]
+[ext_resource type="Texture2D" uid="uid://cgcwli5rkkv06" path="res://Art/Sprites/Bosses/Bowser Man.png" id="2_6gs57"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="3_3bh2f"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="4_vicb0"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="5_beenu"]
+[ext_resource type="PackedScene" uid="uid://beg0amo70tn1y" path="res://States/boss_state_manager.tscn" id="6_3uy7e"]
+[ext_resource type="PackedScene" uid="uid://dpan111q4rm5f" path="res://States/bowserman_hop.tscn" id="8_44xfs"]
+[ext_resource type="PackedScene" uid="uid://bj4321yn2n3ge" path="res://States/bowserman_breathe_fire.tscn" id="9_iumse"]
+[ext_resource type="PackedScene" uid="uid://c26gn3wj2fok8" path="res://States/bowserman_jump.tscn" id="10_olywr"]
+[ext_resource type="PackedScene" uid="uid://cgkjrjnl0q0s6" path="res://States/bowserman_butt_stomp.tscn" id="11_83vtg"]
+[ext_resource type="PackedScene" uid="uid://c6ox17a04nlxt" path="res://States/bowserman_stand_up.tscn" id="12_qv5cj"]
+[ext_resource type="PackedScene" uid="uid://cle0atmu5xwkg" path="res://States/boss_idle.tscn" id="13_8ljbb"]
+[ext_resource type="PackedScene" uid="uid://coqelkqp75nua" path="res://States/bowserman_face_player.tscn" id="13_w8xol"]
+[ext_resource type="PackedScene" uid="uid://bc22v0sgmik2k" path="res://States/boss_intro.tscn" id="14_c3pb8"]
+[ext_resource type="PackedScene" uid="uid://gsvrly5jfckj" path="res://States/boss_death.tscn" id="15_nbflx"]
+[ext_resource type="PackedScene" uid="uid://c4bphtyr6vx0h" path="res://Characters/Components/boss_health_bar.tscn" id="16_mtgne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlkle"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(170, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f1dk"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(272, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx2a8"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(136, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssiig"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(0, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6ejf"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(68, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ywcg"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(102, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1thx"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(0, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvkqc"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(0, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcbgf"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(0, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51mjf"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(68, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6njqr"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(102, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn7k1"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(34, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b5bq"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(34, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4m1u"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(0, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srmwr"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(204, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maskq"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(238, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tiqo5"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(272, 0, 34, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksot1"]
+atlas = ExtResource("2_6gs57")
+region = Rect2(306, 0, 34, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y77w3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlkle")
+}],
+"loop": true,
+"name": &"butt_stomp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f1dk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx2a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssiig")
+}],
+"loop": false,
+"name": &"face_player",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6ejf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ywcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1thx")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvkqc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcbgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51mjf")
+}, {
+"duration": 1.9,
+"texture": SubResource("AtlasTexture_6njqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn7k1")
+}],
+"loop": false,
+"name": &"intro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2b5bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4m1u")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_srmwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maskq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tiqo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maskq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksot1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maskq")
+}],
+"loop": false,
+"name": &"stand_up",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_bgupb"]
+resource_name = "flash"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animations:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_k2f2u"]
+resource_name = "rest"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animations:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4fisa"]
+_data = {
+"flash": SubResource("Animation_bgupb"),
+"rest": SubResource("Animation_k2f2u")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5545"]
+size = Vector2(30, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8iby"]
+size = Vector2(32, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1tvx"]
+size = Vector2(32, 40)
+
+[node name="BowserMan" type="CharacterBody2D"]
+position = Vector2(0, -21)
+collision_layer = 4
+script = ExtResource("1_0373q")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y77w3")
+animation = &"intro"
+
+[node name="EffectsAnimationPlayer" type="AnimationPlayer" parent="Animations"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_4fisa")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_g5545")
+
+[node name="ContactBox" parent="." instance=ExtResource("3_3bh2f")]
+CONTACT_DAMAGE = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_k8iby")
+
+[node name="Health" parent="." instance=ExtResource("4_vicb0")]
+HAS_INVULNERABILITY = true
+INVULNERABILITY_LENGTH = 0.5
+MAX_HEALTH = 28
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_beenu")]
+health = NodePath("../Health")
+mega_buster_override = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_a1tvx")
+
+[node name="BossStateManager" parent="." node_paths=PackedStringArray("idle_state", "intro_state", "starting_state", "death_state") instance=ExtResource("6_3uy7e")]
+idle_state = NodePath("BossIdle")
+intro_state = NodePath("BossIntro")
+starting_state = NodePath("BowsermanHop")
+death_state = NodePath("BossDeath")
+
+[node name="BowsermanHop" parent="BossStateManager" node_paths=PackedStringArray("breath_fire_state", "jump_state") instance=ExtResource("8_44xfs")]
+breath_fire_state = NodePath("../BowsermanBreatheFire")
+jump_state = NodePath("../BowsermanJump")
+animation_name = "jump"
+
+[node name="BowsermanBreatheFire" parent="BossStateManager" node_paths=PackedStringArray("hop_state") instance=ExtResource("9_iumse")]
+hop_state = NodePath("../BowsermanHop")
+animation_name = "fire"
+
+[node name="BowsermanJump" parent="BossStateManager" node_paths=PackedStringArray("butt_stomp_state") instance=ExtResource("10_olywr")]
+butt_stomp_state = NodePath("../BowsermanButtStomp")
+animation_name = "jump"
+
+[node name="BowsermanButtStomp" parent="BossStateManager" node_paths=PackedStringArray("stand_up_state") instance=ExtResource("11_83vtg")]
+stand_up_state = NodePath("../BowsermanStandUp")
+animation_name = "butt_stomp"
+
+[node name="BowsermanStandUp" parent="BossStateManager" node_paths=PackedStringArray("face_player_state") instance=ExtResource("12_qv5cj")]
+face_player_state = NodePath("../BowsermanFacePlayer")
+animation_name = "stand_up"
+
+[node name="BowsermanFacePlayer" parent="BossStateManager" node_paths=PackedStringArray("hop_state") instance=ExtResource("13_w8xol")]
+hop_state = NodePath("../BowsermanHop")
+animation_name = "face_player"
+
+[node name="BossIdle" parent="BossStateManager" instance=ExtResource("13_8ljbb")]
+animation_name = "idle"
+
+[node name="BossIntro" parent="BossStateManager" instance=ExtResource("14_c3pb8")]
+animation_name = "idle"
+
+[node name="BossDeath" parent="BossStateManager" instance=ExtResource("15_nbflx")]
+
+[node name="BarCanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+
+[node name="BossHealthBar" parent="BarCanvasLayer" instance=ExtResource("16_mtgne")]
+offset_left = -713.667
+offset_top = -268.0
+offset_right = -657.667
+offset_bottom = -260.0
+
+[connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
+[connection signal="invul_over" from="Health" to="." method="_on_health_invul_over"]
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="add_collision" from="BossStateManager/BossIntro" to="." method="_on_boss_intro_add_collision"]
+[connection signal="pose_finished" from="BossStateManager/BossIntro" to="." method="_on_boss_intro_pose_finished"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coqelkqp75nua"]
+
+[ext_resource type="Script" path="res://Scripts/bowserman_face_player.gd" id="1_dgrr1"]
+
+[node name="BowsermanFacePlayer" type="Node"]
+script = ExtResource("1_dgrr1")

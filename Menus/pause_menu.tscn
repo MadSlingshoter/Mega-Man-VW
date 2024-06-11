@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq2urn2ktk5c5"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_giqso"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_giqso")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonResume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="ButtonStageSelect" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "To Stage Select"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonResume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonStageSelect" to="." method="_on_button_stage_select_pressed"]

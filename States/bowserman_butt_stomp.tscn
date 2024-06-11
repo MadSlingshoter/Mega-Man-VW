@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgkjrjnl0q0s6"]
+
+[ext_resource type="Script" path="res://Scripts/bowserman_butt_stomp.gd" id="1_yl2x1"]
+
+[node name="BowsermanButtStomp" type="Node"]
+script = ExtResource("1_yl2x1")

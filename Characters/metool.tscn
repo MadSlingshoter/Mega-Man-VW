@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://q3qea4uvnboa"]
+
+[ext_resource type="Texture2D" uid="uid://3gggg4fad0b5" path="res://Art/Sprites/Enemies/Metool Idle.png" id="1_cuspy"]
+[ext_resource type="Script" path="res://Scripts/metool.gd" id="1_pfw7r"]
+[ext_resource type="Texture2D" uid="uid://xwk4s66a1hxb" path="res://Art/Sprites/Enemies/Metool Walk1.png" id="2_5qbvk"]
+[ext_resource type="Texture2D" uid="uid://bfwsgo5q8lrol" path="res://Art/Sprites/Enemies/Metool Walk2.png" id="3_8qwa6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdim4"]
+size = Vector2(16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5wjyv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cuspy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5qbvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8qwa6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqae8"]
+size = Vector2(18, 18)
+
+[node name="Metool" type="CharacterBody2D"]
+position = Vector2(0, -9)
+collision_layer = 4
+script = ExtResource("1_pfw7r")
+SPEED = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_mdim4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5wjyv")
+animation = &"idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wqae8")
+
+[node name="RayCast2DDown" type="RayCast2D" parent="."]
+position = Vector2(-13, -13)
+target_position = Vector2(0, 25)
+
+[node name="RayCast2DSide" type="RayCast2D" parent="."]
+position = Vector2(4, 0)
+target_position = Vector2(-15, 0)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

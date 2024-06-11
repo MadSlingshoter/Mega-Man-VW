@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://beg0amo70tn1y"]
+
+[ext_resource type="Script" path="res://Scripts/boss_state_manager.gd" id="1_ya8rl"]
+
+[node name="BossStateManager" type="Node"]
+script = ExtResource("1_ya8rl")

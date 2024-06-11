@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cplpdngl3vu5k"]
+
+[ext_resource type="Script" path="res://Scripts/room.gd" id="1_apl4d"]
+
+[node name="Room1" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_apl4d")

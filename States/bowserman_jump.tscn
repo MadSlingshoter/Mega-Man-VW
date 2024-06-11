@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c26gn3wj2fok8"]
+
+[ext_resource type="Script" path="res://Scripts/bowserman_jump.gd" id="1_a8gb7"]
+
+[node name="BowsermanJump" type="Node"]
+script = ExtResource("1_a8gb7")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0s5w622obts6"]
+
+[ext_resource type="Script" path="res://Scripts/koopa_troopa_spawner.gd" id="1_pa50u"]
+
+[node name="KoopaTroopaSpawner" type="Node2D"]
+script = ExtResource("1_pa50u")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

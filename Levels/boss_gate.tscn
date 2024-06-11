@@ -1,0 +1,125 @@
+[gd_scene load_steps=17 format=3 uid="uid://bp063vodx6yll"]
+
+[ext_resource type="Texture2D" uid="uid://bhfs6ersmjetd" path="res://Art/Tilesets/BossGate.png" id="1_dd8cb"]
+[ext_resource type="Script" path="res://Scripts/boss_gate.gd" id="1_isfwy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5502"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0f7tf"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5s7w"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ta74"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbmg0"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr6nk"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2rpn"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h0r1"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1iis"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orbcd"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g03pq"]
+atlas = ExtResource("1_dd8cb")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8am0c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5502")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0f7tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5s7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ta74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbmg0")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr6nk")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2rpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8h0r1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1iis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orbcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g03pq")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6wqq"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwtbu"]
+size = Vector2(16, 41)
+
+[node name="BossGate" type="StaticBody2D"]
+process_mode = 3
+collision_mask = 2
+script = ExtResource("1_isfwy")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8am0c")
+animation = &"closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e6wqq")
+
+[node name="TransitionArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionArea"]
+position = Vector2(-8, 11.5)
+shape = SubResource("RectangleShape2D_gwtbu")

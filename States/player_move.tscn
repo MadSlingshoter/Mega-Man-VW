@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhnw3s4h8h0yc"]
+
+[ext_resource type="Script" path="res://Scripts/player_move.gd" id="1_aqrak"]
+
+[node name="PlayerMove" type="Node"]
+script = ExtResource("1_aqrak")
+can_shoot = true

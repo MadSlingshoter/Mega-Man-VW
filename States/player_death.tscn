@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpi260iacpfpo"]
+
+[ext_resource type="Script" path="res://Scripts/player_death.gd" id="1_ihj3r"]
+
+[node name="PlayerDeath" type="Node"]
+script = ExtResource("1_ihj3r")
+
+[node name="DeathTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true

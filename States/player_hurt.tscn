@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://2f3h21trd1uq"]
+
+[ext_resource type="Script" path="res://Scripts/player_hurt.gd" id="1_k6trf"]
+
+[node name="PlayerHurt" type="Node"]
+script = ExtResource("1_k6trf")
+move_speed = 40.0
+
+[node name="HurtTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
