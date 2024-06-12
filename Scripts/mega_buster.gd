@@ -2,28 +2,23 @@ extends Weapon
 
 @onready var collision_shape = $CollisionShape2D
 
+const SPEED = 1.5
+var time = 0.0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	# needed because is first drawn after the first check 
 	if time > 0:
 		if !visible_on_screen_notifier.is_on_screen():
 			queue_free()
-	time += _delta
+	time += delta
 	
 	if is_relected:
 		# shots fly upwards diagonally backwards
-		if sprite.flip_h:
-			position.x += SPEED
-			position.y -= SPEED
-		else:
-			position.x -= SPEED
-			position.y -= SPEED
+		position.x -= direction*SPEED
+		position.y -= SPEED
 	else:
-		# Shot flies in the correct direction
-		if sprite.flip_h:
-			position.x -= SPEED
-		else:
-			position.x += SPEED
+		position.x += direction*SPEED
 
 
 func _on_area_entered(area):

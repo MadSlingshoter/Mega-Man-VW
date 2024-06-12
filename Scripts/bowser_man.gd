@@ -3,6 +3,8 @@ extends CharacterBody2D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction = 1
+var hop_count = 0
+var jump_transition_chance = -0.6
 
 @onready var state_machine = $BossStateManager
 @onready var animations = $Animations
@@ -10,6 +12,7 @@ var direction = 1
 @onready var health = $Health
 @onready var health_bar = $BarCanvasLayer/BossHealthBar
 @onready var collision_box = $CollisionShape2D
+@onready var fire_point = $FirePoint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,11 +30,12 @@ func turn_around() -> void:
 	scale.x = -scale.x
 
 func face_player():
-	if (Global.player.global_position.x < global_position.x and scale.x == -1) or (Global.player.global_position.x > global_position.x and scale.x == 1):
+	if (Global.player.global_position.x > global_position.x and direction < 0) or (Global.player.global_position.x < global_position.x and direction > 0):
 		turn_around()
 
-func _on_health_health_damaged(health):
+func _on_health_health_damaged(curr_health):
 	effects_animation.play("flash")
+	health_bar.value = curr_health
 
 func _on_health_invul_over():
 	effects_animation.play("rest")

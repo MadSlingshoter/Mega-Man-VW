@@ -1,21 +1,21 @@
-class_name Weapon
+class_name EnemyWeapon
 extends Area2D
 
 @export var DAMAGE: int
-@export var ATTACK_TYPE: Global.Weapon
 @export var visible_on_screen_notifier: VisibleOnScreenNotifier2D
 
 var attack: Attack
-var is_relected : bool = false
 var direction = 1
+var is_contacting: bool = false
+var playerHurtBox: Hurtbox
 
 func _ready():
 	attack = Attack.new()
 	attack.damage = DAMAGE
-	attack.attack_type = ATTACK_TYPE
+	attack.attack_type = Global.Weapon.enemy
 
-func init(flip: bool):
-	if flip:
+func init(source_direction: int):
+	if source_direction < 0:
 		scale.x = -scale.x
 		direction = -1
-	
+
