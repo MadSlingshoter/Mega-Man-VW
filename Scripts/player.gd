@@ -34,7 +34,7 @@ var curr_room: Room
 @onready var room_detect_box_slide = $RoomDetector/DetectorBoxSlide
 @onready var shape_cast_slide = $ShapeCastSlide
 @onready var cam = $CameraCustom
-@onready var basic_shot = preload("res://Weapons/mega_buster.tscn")
+@onready var mega_buster = preload("res://Weapons/mega_buster.tscn")
 var b
 
 func _ready():
@@ -93,7 +93,7 @@ func shoot():
 		# Checks the number of shots on the screen before firing a new one
 		if get_tree().get_nodes_in_group("shots").size() <= MAX_SHOTS:
 			shooting_timer.start()
-			b = basic_shot.instantiate()
+			b = mega_buster.instantiate()
 			b.init(animations.flip_h)
 			get_parent().add_child(b)
 			b.global_position = $ShotPoint.global_position

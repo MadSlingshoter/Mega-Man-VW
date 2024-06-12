@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://csv3by68ceox5"]
+
+[ext_resource type="Script" path="res://Scripts/bowserman_fire.gd" id="1_r5khi"]
+[ext_resource type="Texture2D" uid="uid://dx7ncx08fgqu0" path="res://Art/Sprites/Bosses/Bowser Man Fire.png" id="1_sokys"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbvuw"]
+atlas = ExtResource("1_sokys")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fohrx"]
+atlas = ExtResource("1_sokys")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaj2w"]
+atlas = ExtResource("1_sokys")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka7eh"]
+atlas = ExtResource("1_sokys")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mkkn5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbvuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fohrx")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaj2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka7eh")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nux7k"]
+radius = 8.0
+
+[node name="BowsermanFire" type="Area2D" node_paths=PackedStringArray("visible_on_screen_notifier")]
+top_level = true
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_r5khi")
+DAMAGE = 3
+visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mkkn5")
+animation = &"forward"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nux7k")
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 8)
+
+[node name="RayCastFront" type="RayCast2D" parent="."]
+target_position = Vector2(8, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

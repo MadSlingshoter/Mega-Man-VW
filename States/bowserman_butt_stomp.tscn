@@ -4,3 +4,7 @@
 
 [node name="BowsermanButtStomp" type="Node"]
 script = ExtResource("1_yl2x1")
+
+[node name="DelayTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

@@ -2,11 +2,21 @@ extends State
 
 @export var stand_up_state : State
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+const STOMP_SPEED : float = 250
 
+@onready var delay_timer = $DelayTimer
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func enter() -> void:
+	super()
+	delay_timer.start()
+	parent.velocity.x = 0
+	parent.velocity.y = 0
+
+func process_physics(delta: float) -> State:
+	if parent.is_on_floor():
+		return stand_up_state
+	if delay_timer.is_stopped():
+		parent.velocity.y = STOMP_SPEED
+	parent.move_and_slide()
+	return null
+

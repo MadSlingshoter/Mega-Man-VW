@@ -7,13 +7,12 @@
 radius = 3.0
 height = 8.0
 
-[node name="MegaBuster" type="Area2D" node_paths=PackedStringArray("sprite", "visible_on_screen_notifier")]
+[node name="MegaBuster" type="Area2D" node_paths=PackedStringArray("visible_on_screen_notifier")]
+top_level = true
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_vfkug")
-SPEED = 1.5
 DAMAGE = 1
-sprite = NodePath("Sprite2D")
 visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

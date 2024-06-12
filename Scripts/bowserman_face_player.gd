@@ -2,11 +2,11 @@ extends State
 
 @export var hop_state : State
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func enter() -> void:
+	super()
+	parent.face_player()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func process_physics(delta: float) -> State:
+	if not animations.is_playing():
+		return hop_state
+	return null

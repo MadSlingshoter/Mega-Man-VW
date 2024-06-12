@@ -27,6 +27,7 @@ var beaten_boss2 : bool = false
 func _ready():
 	var root = get_tree().root
 	curr_scene = root.get_child(root.get_child_count() - 1)
+	randomize()
 
 
 func goto_scene(scene_name : Level):

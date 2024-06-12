@@ -4,3 +4,10 @@
 
 [node name="BowsermanBreatheFire" type="Node"]
 script = ExtResource("1_tku7r")
+
+[node name="PreJumpTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="PreJumpTimer" to="." method="_on_pre_jump_timer_timeout"]

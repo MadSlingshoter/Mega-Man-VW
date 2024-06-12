@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5vjwc0ysouuk"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_weapon.gd" id="1_ajyyb"]
+
+[node name="EnemyWeapon" type="Area2D"]
+top_level = true
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_ajyyb")

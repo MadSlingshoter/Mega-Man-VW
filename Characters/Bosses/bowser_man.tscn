@@ -164,7 +164,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_srmwr")
 }, {
 "duration": 1.0,
@@ -184,7 +184,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"stand_up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="Animation" id="Animation_bgupb"]
@@ -242,7 +242,9 @@ script = ExtResource("1_0373q")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y77w3")
-animation = &"intro"
+animation = &"fire"
+frame = 2
+frame_progress = 1.0
 
 [node name="EffectsAnimationPlayer" type="AnimationPlayer" parent="Animations"]
 root_node = NodePath("../..")
@@ -268,11 +270,13 @@ MAX_HEALTH = 28
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_beenu")]
 health = NodePath("../Health")
-mega_buster_override = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_a1tvx")
+
+[node name="FirePoint" type="Node2D" parent="."]
+position = Vector2(15, -3)
 
 [node name="BossStateManager" parent="." node_paths=PackedStringArray("idle_state", "intro_state", "starting_state", "death_state") instance=ExtResource("6_3uy7e")]
 idle_state = NodePath("BossIdle")
@@ -280,9 +284,10 @@ intro_state = NodePath("BossIntro")
 starting_state = NodePath("BowsermanHop")
 death_state = NodePath("BossDeath")
 
-[node name="BowsermanHop" parent="BossStateManager" node_paths=PackedStringArray("breath_fire_state", "jump_state") instance=ExtResource("8_44xfs")]
+[node name="BowsermanHop" parent="BossStateManager" node_paths=PackedStringArray("breath_fire_state", "jump_state", "hop_state") instance=ExtResource("8_44xfs")]
 breath_fire_state = NodePath("../BowsermanBreatheFire")
 jump_state = NodePath("../BowsermanJump")
+hop_state = NodePath(".")
 animation_name = "jump"
 
 [node name="BowsermanBreatheFire" parent="BossStateManager" node_paths=PackedStringArray("hop_state") instance=ExtResource("9_iumse")]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://tlttbn602yat"]
+[gd_scene load_steps=12 format=3 uid="uid://tlttbn602yat"]
 
 [ext_resource type="Script" path="res://Scripts/test_level_boss.gd" id="1_kqptm"]
 [ext_resource type="Texture2D" uid="uid://ds4mijl1lum1g" path="res://Art/Tilesets/mm2woodtilesetgr6.png" id="1_le8g0"]
 [ext_resource type="PackedScene" uid="uid://cplpdngl3vu5k" path="res://Levels/room_1.tscn" id="2_5qidi"]
 [ext_resource type="PackedScene" uid="uid://bp063vodx6yll" path="res://Levels/boss_gate.tscn" id="3_43c7g"]
+[ext_resource type="PackedScene" uid="uid://w5caejcxt3xh" path="res://Levels/boss_room.tscn" id="4_6nbjw"]
 [ext_resource type="PackedScene" uid="uid://be5wmlaf3vxs1" path="res://EnemySpawners/boss_spawner.tscn" id="5_b4mpq"]
 [ext_resource type="PackedScene" uid="uid://d3fini7tuvhkp" path="res://Characters/Bosses/bowser_man.tscn" id="6_g2rq4"]
 
@@ -184,19 +185,19 @@ checkpoint_number = 0
 position = Vector2(128, 120)
 shape = SubResource("RectangleShape2D_f80ka")
 
-[node name="Room2" parent="Rooms" node_paths=PackedStringArray("boss_gate", "boss_spawner") instance=ExtResource("2_5qidi")]
+[node name="BossRoom" parent="Rooms" node_paths=PackedStringArray("boss_spawner", "boss_gate") instance=ExtResource("4_6nbjw")]
 position = Vector2(256, 0)
-boss_gate = NodePath("BossGate")
 boss_spawner = NodePath("BossSpawner")
+boss_gate = NodePath("BossGate")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/BossRoom"]
 position = Vector2(128, 120)
 shape = SubResource("RectangleShape2D_sop2i")
 
-[node name="BossGate" parent="Rooms/Room2" instance=ExtResource("3_43c7g")]
+[node name="BossGate" parent="Rooms/BossRoom" instance=ExtResource("3_43c7g")]
 position = Vector2(0, 160)
 
-[node name="BossSpawner" parent="Rooms/Room2" instance=ExtResource("5_b4mpq")]
+[node name="BossSpawner" parent="Rooms/BossRoom" instance=ExtResource("5_b4mpq")]
 position = Vector2(208, 14)
 boss = ExtResource("6_g2rq4")
 

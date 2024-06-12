@@ -1,12 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://b0p4retaumoj5"]
+[gd_scene load_steps=26 format=3 uid="uid://b0p4retaumoj5"]
 
 [ext_resource type="Texture2D" uid="uid://c2smo16kv7y07" path="res://Art/Tilesets/smb tileset.png" id="1_eakx3"]
 [ext_resource type="Script" path="res://Scripts/bowser_man_stage.gd" id="1_w41xp"]
 [ext_resource type="PackedScene" uid="uid://cplpdngl3vu5k" path="res://Levels/room_1.tscn" id="3_0ts2a"]
 [ext_resource type="PackedScene" uid="uid://b018mm6l24sjx" path="res://EnemySpawners/goomba_spawner.tscn" id="4_rdgme"]
 [ext_resource type="PackedScene" uid="uid://bp063vodx6yll" path="res://Levels/boss_gate.tscn" id="4_rmarm"]
+[ext_resource type="PackedScene" uid="uid://w5caejcxt3xh" path="res://Levels/boss_room.tscn" id="5_l6wpp"]
 [ext_resource type="PackedScene" uid="uid://d0s5w622obts6" path="res://EnemySpawners/koopa_troopa_spawner.tscn" id="5_sm6dd"]
+[ext_resource type="PackedScene" uid="uid://be5wmlaf3vxs1" path="res://EnemySpawners/boss_spawner.tscn" id="6_pdmld"]
 [ext_resource type="PackedScene" uid="uid://cta22d0u0444" path="res://Characters/Enemies/fire_bar.tscn" id="6_us1ej"]
+[ext_resource type="PackedScene" uid="uid://d3fini7tuvhkp" path="res://Characters/Bosses/bowser_man.tscn" id="7_47m3l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qekcc"]
 texture = ExtResource("1_eakx3")
@@ -1546,16 +1549,21 @@ shape = SubResource("RectangleShape2D_7dokm")
 [node name="BossGate" parent="Rooms/Room5" instance=ExtResource("4_rmarm")]
 position = Vector2(0, 128)
 
-[node name="Room6" parent="Rooms" node_paths=PackedStringArray("boss_gate") instance=ExtResource("3_0ts2a")]
+[node name="BossRoom" parent="Rooms" node_paths=PackedStringArray("boss_spawner", "boss_gate") instance=ExtResource("5_l6wpp")]
 position = Vector2(8336, 240)
+boss_spawner = NodePath("BossSpawner")
 boss_gate = NodePath("BossGate")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/BossRoom"]
 position = Vector2(128, 120)
 shape = SubResource("RectangleShape2D_p8yia")
 
-[node name="BossGate" parent="Rooms/Room6" instance=ExtResource("4_rmarm")]
+[node name="BossGate" parent="Rooms/BossRoom" instance=ExtResource("4_rmarm")]
 position = Vector2(0, 128)
+
+[node name="BossSpawner" parent="Rooms/BossRoom" instance=ExtResource("6_pdmld")]
+position = Vector2(208, 27)
+boss = ExtResource("7_47m3l")
 
 [node name="Pits" type="Area2D" parent="."]
 collision_layer = 64
