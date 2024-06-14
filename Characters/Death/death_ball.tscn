@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs40eirdbtjug"]
+
+[ext_resource type="Texture2D" uid="uid://bs53dc46lbinl" path="res://Art/Sprites/Death/8bitMM_Death.png" id="1_7uh03"]
+[ext_resource type="Script" path="res://Scripts/death_ball.gd" id="2_k5l5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0srl"]
+atlas = ExtResource("1_7uh03")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcsms"]
+atlas = ExtResource("1_7uh03")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4655"]
+atlas = ExtResource("1_7uh03")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8lqw"]
+atlas = ExtResource("1_7uh03")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bum2"]
+atlas = ExtResource("1_7uh03")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oc6ug"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0srl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcsms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4655")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8lqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bum2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="DeathBall" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_oc6ug")
+frame_progress = 0.901033
+script = ExtResource("2_k5l5w")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

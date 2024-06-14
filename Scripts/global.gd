@@ -19,7 +19,7 @@ var num_of_lives : int = 2:
 		num_of_lives = clamp(value, 0 , MAX_LIVES)
 
 # Checks for beaten stages, used for stage selection and available weapons
-var beaten_boss1 : bool = false
+var beaten_bowserman : bool = false
 var beaten_boss2 : bool = false
 # and so forth
 

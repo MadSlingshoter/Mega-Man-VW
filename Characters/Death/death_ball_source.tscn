@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhvsmy71bwwu7"]
+
+[ext_resource type="PackedScene" uid="uid://cs40eirdbtjug" path="res://Characters/Death/death_ball.tscn" id="1_g0jdb"]
+
+[node name="DeathBallSource" type="Node2D"]
+process_mode = 3
+
+[node name="DeathBall1" parent="." instance=ExtResource("1_g0jdb")]
+direction_y = -1.0
+
+[node name="DeathBall2" parent="." instance=ExtResource("1_g0jdb")]
+direction_x = 1.0
+direction_y = -1.0
+
+[node name="DeathBall3" parent="." instance=ExtResource("1_g0jdb")]
+direction_x = 1.0
+
+[node name="DeathBall4" parent="." instance=ExtResource("1_g0jdb")]
+direction_x = 1.0
+direction_y = 1.0
+
+[node name="DeathBall5" parent="." instance=ExtResource("1_g0jdb")]
+direction_y = 1.0
+
+[node name="DeathBall6" parent="." instance=ExtResource("1_g0jdb")]
+direction_x = -1.0
+direction_y = 1.0
+
+[node name="DeathBall7" parent="." instance=ExtResource("1_g0jdb")]
+direction_x = -1.0
+
+[node name="DeathBall8" parent="." instance=ExtResource("1_g0jdb")]
+direction_x = -1.0
+direction_y = -1.0
+
+[node name="DeathBall9" parent="." instance=ExtResource("1_g0jdb")]
+direction_y = -1.0
+speed = 160.0
+
+[node name="DeathBall10" parent="." instance=ExtResource("1_g0jdb")]
+direction_x = 1.0
+speed = 160.0
+
+[node name="DeathBall11" parent="." instance=ExtResource("1_g0jdb")]
+direction_y = 1.0
+speed = 160.0
+
+[node name="DeathBall12" parent="." instance=ExtResource("1_g0jdb")]
+direction_x = -1.0
+speed = 160.0

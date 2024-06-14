@@ -4,9 +4,9 @@ extends EnemyWeapon
 @onready var raycast_down = $RayCastDown
 @onready var raycast_front = $RayCastFront
 
-const SPEED_HORI_DOWN: float = 0.5
-const SPEED_HORI_FORWARD: float = 0.7
-const SPEED_VERT: float = 0.5
+const SPEED_HORI_DOWN: float = 70
+const SPEED_HORI_FORWARD: float = 100
+const SPEED_VERT: float = 70
 
 var time = 0.0
 
@@ -23,11 +23,11 @@ func _process(delta):
 	
 	if not raycast_down.is_colliding():
 		animations.play("down")
-		position.x += direction*SPEED_HORI_DOWN
-		position.y += SPEED_VERT
+		position.x += direction * SPEED_HORI_DOWN * delta
+		position.y += SPEED_VERT * delta
 	else:
 		animations.play("forward")
-		position.x += direction*SPEED_HORI_FORWARD
+		position.x += direction * SPEED_HORI_FORWARD * delta
 	
 	if is_contacting:
 		playerHurtBox.damage(attack)
