@@ -20,8 +20,16 @@ var num_of_lives : int = 2:
 
 # Checks for beaten stages, used for stage selection and available weapons
 var beaten_bowserman : bool = false
-var beaten_boss2 : bool = false
-# and so forth
+var beaten_waffleman : bool = false
+var beaten_carman : bool = false
+var beaten_legoman : bool = false
+var beaten_catman : bool = false
+var beaten_constructionman : bool = false
+var beaten_shadowsoraman : bool = false
+var beaten_policeman : bool = false
+var beaten_wily1 : bool = false
+var beaten_wily2 : bool = false
+var beaten_wily3 : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
