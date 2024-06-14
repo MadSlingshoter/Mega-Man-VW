@@ -231,6 +231,7 @@ size = Vector2(14, 10)
 top_level = true
 position = Vector2(0, -10)
 collision_layer = 2
+platform_on_leave = 2
 script = ExtResource("1_vtugr")
 MAX_FALL_SPEED = 420.0
 TRANSITION_SPEED = 25.0

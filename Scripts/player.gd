@@ -118,7 +118,8 @@ func _on_room_detector_area_entered(area):
 		if is_gate_transitioning:
 			is_gate_transitioning = false
 		else:
-			room_transition(area)
+			if not area == curr_room:
+				room_transition(area)
 	elif area.get_parent() is BossGate and not is_transitioning and not is_gate_transitioning:
 		gate_transition(area.get_parent())
 
