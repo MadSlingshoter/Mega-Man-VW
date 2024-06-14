@@ -2,7 +2,7 @@ extends Weapon
 
 @onready var collision_shape = $CollisionShape2D
 
-const SPEED = 1.5
+const SPEED = 200
 var time = 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,10 +15,10 @@ func _process(delta):
 	
 	if is_relected:
 		# shots fly upwards diagonally backwards
-		position.x -= direction*SPEED
-		position.y -= SPEED
+		position.x -= direction * SPEED * delta
+		position.y -= SPEED * delta
 	else:
-		position.x += direction*SPEED
+		position.x += direction * SPEED * delta
 
 
 func _on_area_entered(area):

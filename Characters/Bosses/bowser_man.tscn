@@ -317,6 +317,7 @@ animation_name = "idle"
 animation_name = "idle"
 
 [node name="BossDeath" parent="BossStateManager" instance=ExtResource("15_nbflx")]
+animation_name = "idle"
 
 [node name="BarCanvasLayer" type="CanvasLayer" parent="."]
 scale = Vector2(3, 3)

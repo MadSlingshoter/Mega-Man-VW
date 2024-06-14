@@ -105,6 +105,8 @@ func _on_health_health_damaged(new_health):
 	emit_signal("health_changed",new_health)
 
 func _on_health_killed():
+	effects_animation.stop(false)
+	effects_animation.process_mode = Node.PROCESS_MODE_DISABLED
 	state_machine.player_death()
 
 func _on_health_invul_over():

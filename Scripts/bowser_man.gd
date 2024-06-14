@@ -12,6 +12,8 @@ var jump_transition_chance = -0.6
 @onready var health = $Health
 @onready var health_bar = $BarCanvasLayer/BossHealthBar
 @onready var collision_box = $CollisionShape2D
+@onready var hurt_box = $Hurtbox/CollisionShape2D
+@onready var contact_box = $ContactBox/CollisionShape2D
 @onready var fire_point = $FirePoint
 
 # Called when the node enters the scene tree for the first time.
@@ -42,8 +44,13 @@ func _on_health_invul_over():
 
 
 func _on_health_killed():
-	#state_machine.death()
-	queue_free()
+	effects_animation.stop(false)
+	effects_animation.process_mode = Node.PROCESS_MODE_DISABLED
+	collision_box.set_deferred("disabled", true)
+	hurt_box.set_deferred("disabled", true)
+	contact_box.set_deferred("disabled", true)
+	state_machine.death()
+	Global.beaten_bowserman = true
 
 func _on_boss_intro_pose_finished():
 	health_bar.show()
