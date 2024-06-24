@@ -34,6 +34,8 @@ var curr_room: Room
 @onready var room_detect_box_slide = $RoomDetector/DetectorBoxSlide
 @onready var shape_cast_slide = $ShapeCastSlide
 @onready var cam = $CameraCustom
+@onready var shooting_controller = $ShootingController
+@onready var shot_point = $ShotPoint
 @onready var mega_buster = preload("res://Weapons/mega_buster.tscn")
 var b
 
@@ -41,6 +43,7 @@ func _ready():
 	#teleport in animation
 	Global.can_pause = true
 	state_machine.init(self)
+	shooting_controller.init(self)
 	Global.player = self
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -91,13 +94,9 @@ func update_facing_direction(direction: int):
 func shoot():
 	if state_machine.current_state.can_shoot:
 		# Checks the number of shots on the screen before firing a new one
-		if get_tree().get_nodes_in_group("shots").size() <= MAX_SHOTS:
+		if shooting_controller.shoot():
 			shooting_timer.start()
-			b = mega_buster.instantiate()
-			b.init(animations.flip_h)
-			get_parent().add_child(b)
-			b.global_position = $ShotPoint.global_position
-			b.add_to_group("shots")
+		
 
 func _on_health_health_damaged(new_health):
 	effects_animation.play("flash")

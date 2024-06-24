@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bam3fbp6ctuea"]
+
+[ext_resource type="Script" path="res://Scripts/mega_buster_state.gd" id="1_1ygbx"]
+[ext_resource type="PackedScene" uid="uid://8be5jt1j70dj" path="res://Weapons/mega_buster.tscn" id="2_s1twd"]
+
+[node name="MegaBusterState" type="Node"]
+script = ExtResource("1_1ygbx")
+weapon = ExtResource("2_s1twd")

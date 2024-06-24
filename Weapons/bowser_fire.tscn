@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://y1q1h8ms0odt"]
+
+[ext_resource type="Script" path="res://Scripts/bowser_fire.gd" id="1_21ujm"]
+[ext_resource type="Texture2D" uid="uid://dx7ncx08fgqu0" path="res://Art/Sprites/Bosses/Bowser Man Fire.png" id="2_scgat"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0gs8"]
+atlas = ExtResource("2_scgat")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ughi5"]
+atlas = ExtResource("2_scgat")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0jxr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0gs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ughi5")
+}],
+"loop": true,
+"name": &"shot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdx3b"]
+radius = 8.0
+
+[node name="BowserFire" type="Area2D" node_paths=PackedStringArray("visible_on_screen_notifier")]
+script = ExtResource("1_21ujm")
+DAMAGE = 2
+ATTACK_TYPE = 1
+visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h0jxr")
+animation = &"shot"
+autoplay = "shot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wdx3b")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

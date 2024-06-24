@@ -2,9 +2,13 @@ extends MarginContainer
 
 func _ready():
 	$VBoxContainer/ButtonContinue.grab_focus()
+	
+	if Global.num_of_lives < 2:
+		Global.num_of_lives = 2
+	
+	Global.checkpoint_num = 0
 
 func _on_button_continue_pressed():
-	Global.checkpoint_num = 0
 	Global.restart_level()
 
 
