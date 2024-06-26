@@ -1,7 +1,7 @@
 extends Node
 
 enum TransitionDir {up, down, left, right}
-enum Weapon {mega_buster, bowser_fire, enemy, hazard}
+enum Weapon {mega_buster, bowser_fire, weapon2, weapon3, weapon4, weapon5, weapon6, weapon7, weapon8, enemy, hazard}
 enum Level {start_menu, stage_select, continue_menu, bowser_man, test1, test2, test_boss}
 
 var curr_scene = null
@@ -19,9 +19,17 @@ var num_of_lives : int = 2:
 		num_of_lives = clamp(value, 0 , MAX_LIVES)
 
 # Checks for beaten stages, used for stage selection and available weapons
-var beaten_bowserman : bool = false
-var beaten_boss2 : bool = false
-# and so forth
+var beaten_bowserman : bool = true
+var beaten_waffleman : bool = false
+var beaten_carman : bool = false
+var beaten_legoman : bool = false
+var beaten_catman : bool = false
+var beaten_constructionman : bool = false
+var beaten_shadowsoraman : bool = false
+var beaten_policeman : bool = false
+var beaten_wily1 : bool = false
+var beaten_wily2 : bool = false
+var beaten_wily3 : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

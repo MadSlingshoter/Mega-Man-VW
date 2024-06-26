@@ -1,8 +1,9 @@
-[gd_scene load_steps=48 format=3 uid="uid://cds61asgr1vhl"]
+[gd_scene load_steps=56 format=3 uid="uid://cds61asgr1vhl"]
 
 [ext_resource type="Texture2D" uid="uid://c3vb2hu658gav" path="res://Art/Sprites/Mega Man/8bitMM_Idle.png" id="1_11kqb"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_vtugr"]
 [ext_resource type="Texture2D" uid="uid://cc82l6q3ateeu" path="res://Art/Sprites/Mega Man/8bitMM_Hurt.png" id="2_2r2n5"]
+[ext_resource type="Shader" path="res://Characters/player.gdshader" id="2_t28x3"]
 [ext_resource type="Texture2D" uid="uid://cw0v00u207bsp" path="res://Art/Sprites/Mega Man/8bitMM_Jump.png" id="4_ie4xn"]
 [ext_resource type="Texture2D" uid="uid://drqsrqgpfngdk" path="res://Art/Sprites/Mega Man/8bitMM_Jump_Shoot.png" id="5_b1a30"]
 [ext_resource type="Texture2D" uid="uid://b4assqnuo3k2b" path="res://Art/Sprites/Mega Man/8bitMM_Run.png" id="6_hf3m7"]
@@ -21,7 +22,20 @@
 [ext_resource type="PackedScene" uid="uid://bxnykrln47o2n" path="res://States/player_jump.tscn" id="15_oaqm1"]
 [ext_resource type="PackedScene" uid="uid://dowrqtx2gencd" path="res://States/player_slide.tscn" id="17_3t4h7"]
 [ext_resource type="PackedScene" uid="uid://bpi260iacpfpo" path="res://States/player_death.tscn" id="18_3m3ea"]
+[ext_resource type="Script" path="res://Scripts/shooting_controller.gd" id="20_bt40j"]
 [ext_resource type="Script" path="res://Scripts/camera_custom.gd" id="20_jlh4v"]
+[ext_resource type="PackedScene" uid="uid://bam3fbp6ctuea" path="res://Weapons/mega_buster_state.tscn" id="21_1e22s"]
+[ext_resource type="PackedScene" uid="uid://d1ctqu1xpy6qb" path="res://Weapons/bowser_fire_state.tscn" id="22_3sybr"]
+[ext_resource type="Texture2D" uid="uid://bpess4ol3legu" path="res://Art/Sprites/Bars/HealthBar2.png" id="23_6xqno"]
+[ext_resource type="Texture2D" uid="uid://dccchyu36w7lh" path="res://Art/Sprites/Bars/HealthBar1.png" id="24_uxc72"]
+[ext_resource type="Script" path="res://Scripts/energy_bar.gd" id="25_hwnuu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1g4n"]
+shader = ExtResource("2_t28x3")
+shader_parameter/origin_color1 = Color(0, 0.45098, 0.968627, 1)
+shader_parameter/origin_color2 = Color(0, 1, 1, 1)
+shader_parameter/new_color1 = null
+shader_parameter/new_color2 = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gg6wq"]
 atlas = ExtResource("2_2r2n5")
@@ -227,7 +241,7 @@ size = Vector2(24, 19)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xjcc"]
 size = Vector2(14, 10)
 
-[node name="Player" type="CharacterBody2D" groups=["shots"]]
+[node name="Player" type="CharacterBody2D"]
 top_level = true
 position = Vector2(0, -10)
 collision_layer = 2
@@ -241,6 +255,7 @@ TRANSITION_GATE_SPEED = 35.0
 position = Vector2(16, -3)
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_x1g4n")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_waxqc")
 animation = &"idle"
@@ -341,6 +356,15 @@ animation_name = "slide"
 [node name="PlayerDeath" parent="PlayerStateManager" instance=ExtResource("18_3m3ea")]
 animation_name = "hurt"
 
+[node name="ShootingController" type="Node" parent="." node_paths=PackedStringArray("mega_buster", "bowser_fire")]
+script = ExtResource("20_bt40j")
+mega_buster = NodePath("MegaBusterState")
+bowser_fire = NodePath("BowserFireState")
+
+[node name="MegaBusterState" parent="ShootingController" instance=ExtResource("21_1e22s")]
+
+[node name="BowserFireState" parent="ShootingController" instance=ExtResource("22_3sybr")]
+
 [node name="ShootingTimer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.4
@@ -364,25 +388,39 @@ shape = SubResource("RectangleShape2D_6xjcc")
 target_position = Vector2(0, -4)
 max_results = 10
 
-[node name="CanvasLayerHealth" type="CanvasLayer" parent="."]
+[node name="CanvasLayerBars" type="CanvasLayer" parent="."]
 scale = Vector2(3, 3)
 transform = Transform2D(3, 0, 0, 3, 0, 0)
 
-[node name="HealthBar" parent="CanvasLayerHealth" instance=ExtResource("9_ita8y")]
+[node name="HealthBar" parent="CanvasLayerBars" instance=ExtResource("9_ita8y")]
 offset_left = 18.3333
 offset_top = -268.0
 offset_right = 74.3333
 offset_bottom = -260.0
+
+[node name="EnergyBar" type="TextureProgressBar" parent="CanvasLayerBars"]
+visible = false
+offset_left = 26.3333
+offset_top = 92.0
+offset_right = 82.3333
+offset_bottom = 100.0
+rotation = 4.71239
+max_value = 28.0
+value = 28.0
+texture_under = ExtResource("23_6xqno")
+texture_progress = ExtResource("24_uxc72")
+script = ExtResource("25_hwnuu")
 
 [node name="CanvasLayerPause" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayerPause" instance=ExtResource("10_kp53s")]
 visible = false
 
-[connection signal="health_changed" from="." to="CanvasLayerHealth/HealthBar" method="_on_player_health_changed"]
+[connection signal="health_changed" from="." to="CanvasLayerBars/HealthBar" method="_on_player_health_changed"]
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
 [connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
 [connection signal="invul_over" from="Health" to="." method="_on_health_invul_over"]
 [connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="energy_updated" from="ShootingController" to="CanvasLayerBars/EnergyBar" method="_on_shooting_controller_energy_updated"]
 [connection signal="gate_transition_finished" from="CameraCustom" to="." method="_on_camera_custom_gate_transition_finished"]
 [connection signal="transition_finished" from="CameraCustom" to="." method="_on_camera_custom_transition_finished"]

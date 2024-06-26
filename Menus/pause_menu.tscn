@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq2urn2ktk5c5"]
+[gd_scene load_steps=4 format=3 uid="uid://cq2urn2ktk5c5"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_giqso"]
+[ext_resource type="Texture2D" uid="uid://bpess4ol3legu" path="res://Art/Sprites/Bars/HealthBar2.png" id="2_yqeca"]
+[ext_resource type="Texture2D" uid="uid://dccchyu36w7lh" path="res://Art/Sprites/Bars/HealthBar1.png" id="3_t01v1"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -20,19 +22,328 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
 layout_mode = 2
-alignment = 1
+dragger_visibility = 1
 
-[node name="ButtonResume" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer"]
 layout_mode = 2
-text = "Resume"
+size_flags_vertical = 3
+theme_override_constants/separation = 20
 
-[node name="ButtonStageSelect" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="WeaponColumn1" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer"]
 layout_mode = 2
-text = "To Stage Select"
+size_flags_horizontal = 3
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonResume" to="." method="_on_button_resume_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonStageSelect" to="." method="_on_button_stage_select_pressed"]
+[node name="Weapon0" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon0"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn2/Weapon5/Button")
+focus_neighbor_top = NodePath("../../Weapon4/Button")
+focus_neighbor_right = NodePath("../../../WeaponColumn2/Weapon5/Button")
+focus_neighbor_bottom = NodePath("../../Weapon1/Button")
+mouse_filter = 2
+text = "MEGA BUSTER"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon0"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="Weapon1" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon1"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn2/Weapon6/Button")
+focus_neighbor_top = NodePath("../../Weapon0/Button")
+focus_neighbor_right = NodePath("../../../WeaponColumn2/Weapon6/Button")
+focus_neighbor_bottom = NodePath("../../Weapon2/Button")
+mouse_filter = 2
+action_mode = 0
+text = "BOWSER FIRE"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon1"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="Weapon2" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn2/Weapon7/Button")
+focus_neighbor_top = NodePath("../../Weapon1/Button")
+focus_neighbor_right = NodePath("../../../WeaponColumn2/Weapon7/Button")
+focus_neighbor_bottom = NodePath("../../Weapon3/Button")
+mouse_filter = 2
+action_mode = 0
+text = "WEAPON 2"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon2"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="Weapon3" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon3"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn2/Weapon8/Button")
+focus_neighbor_top = NodePath("../../Weapon2/Button")
+focus_neighbor_right = NodePath("../../../WeaponColumn2/Weapon8/Button")
+focus_neighbor_bottom = NodePath("../../Weapon4/Button")
+mouse_filter = 2
+action_mode = 0
+text = "WEAPON 3"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon3"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="Weapon4" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon4"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn2/ExitButton")
+focus_neighbor_top = NodePath("../../Weapon3/Button")
+focus_neighbor_right = NodePath("../../../WeaponColumn2/ExitButton")
+focus_neighbor_bottom = NodePath("../../Weapon0/Button")
+mouse_filter = 2
+action_mode = 0
+text = "WEAPON 4"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon4"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="WeaponColumn2" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Weapon5" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon5"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn1/Weapon0/Button")
+focus_neighbor_top = NodePath("../../ExitButton")
+focus_neighbor_right = NodePath("../../../WeaponColumn1/Weapon0/Button")
+focus_neighbor_bottom = NodePath("../../Weapon6/Button")
+mouse_filter = 2
+action_mode = 0
+text = "WEAPON 5"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon5"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="Weapon6" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon6"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn1/Weapon1/Button")
+focus_neighbor_top = NodePath("../../Weapon5/Button")
+focus_neighbor_right = NodePath("../../../WeaponColumn1/Weapon1/Button")
+focus_neighbor_bottom = NodePath("../../Weapon7/Button")
+mouse_filter = 2
+action_mode = 0
+text = "WEAPON 6"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon6"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="Weapon7" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon7"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn1/Weapon3/Button")
+focus_neighbor_top = NodePath("../../Weapon6/Button")
+focus_neighbor_right = NodePath("../../../WeaponColumn1/Weapon3/Button")
+focus_neighbor_bottom = NodePath("../../Weapon8/Button")
+mouse_filter = 2
+action_mode = 0
+text = "WEAPON 7"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon7"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="Weapon8" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon8"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../WeaponColumn1/Weapon3/Button")
+focus_neighbor_top = NodePath("../../Weapon7/Button")
+focus_neighbor_right = NodePath("../../../WeaponColumn1/Weapon3/Button")
+focus_neighbor_bottom = NodePath("../../ExitButton")
+mouse_filter = 2
+action_mode = 0
+text = "WEAPON 8"
+alignment = 0
+
+[node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon8"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../WeaponColumn1/Weapon4/Button")
+focus_neighbor_top = NodePath("../Weapon8/Button")
+focus_neighbor_right = NodePath("../../WeaponColumn1/Weapon4/Button")
+focus_neighbor_bottom = NodePath("../Weapon5/Button")
+mouse_filter = 2
+action_mode = 0
+text = "EXIT"
+alignment = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 170
+dragger_visibility = 1
+
+[node name="Items" type="HBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ETanks" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer/Items"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HSplitContainer/Items/ETanks"]
+layout_mode = 2
+text = "E"
+
+[node name="Number" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/Items/ETanks"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WTanks" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer/Items"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HSplitContainer/Items/WTanks"]
+layout_mode = 2
+text = "W"
+
+[node name="Number" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/Items/WTanks"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MTanks" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer/Items"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HSplitContainer/Items/MTanks"]
+layout_mode = 2
+text = "M"
+
+[node name="Number" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/Items/MTanks"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="LifeLabel" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "LIFE"
+
+[node name="ExtraLifeNumber" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+max_value = 28.0
+value = 28.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_yqeca")
+texture_progress = ExtResource("3_t01v1")
+
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon0/Button" to="." method="_on_button0_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon1/Button" to="." method="_on_button1_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon2/Button" to="." method="_on_button2_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon3/Button" to="." method="_on_button3_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn1/Weapon4/Button" to="." method="_on_button4_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon5/Button" to="." method="_on_button5_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon6/Button" to="." method="_on_button6_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon7/Button" to="." method="_on_button7_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon8/Button" to="." method="_on_button8_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/ExitButton" to="." method="_on_exit_button_pressed"]

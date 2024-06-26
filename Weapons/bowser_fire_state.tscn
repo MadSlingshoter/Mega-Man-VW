@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1ctqu1xpy6qb"]
+
+[ext_resource type="Script" path="res://Scripts/bowser_fire_state.gd" id="1_6lcon"]
+[ext_resource type="PackedScene" uid="uid://y1q1h8ms0odt" path="res://Weapons/bowser_fire.tscn" id="2_llf8y"]
+
+[node name="BowserFireState" type="Node"]
+script = ExtResource("1_6lcon")
+weapon = ExtResource("2_llf8y")
