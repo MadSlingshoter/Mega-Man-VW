@@ -45,6 +45,8 @@ func _ready():
 	state_machine.init(self)
 	shooting_controller.init(self)
 	Global.player = self
+#	animations.material.set("shader_param/new_color1", Color(1.0, 0.0, 0.0))
+#	animations.material.set("shader_param/new_color2", Color(0.0, 1.0, 0.0))
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -96,7 +98,8 @@ func shoot():
 		# Checks the number of shots on the screen before firing a new one
 		if shooting_controller.shoot():
 			shooting_timer.start()
-		
+
+
 
 func _on_health_health_damaged(new_health):
 	effects_animation.play("flash")
@@ -215,3 +218,5 @@ func _on_gate_closed():
 	process_mode = Node.PROCESS_MODE_INHERIT
 	velocity.y = saved_velocity_y
 	curr_room.when_entered()
+
+

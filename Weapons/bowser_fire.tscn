@@ -29,6 +29,8 @@ animations = [{
 radius = 8.0
 
 [node name="BowserFire" type="Area2D" node_paths=PackedStringArray("visible_on_screen_notifier")]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("1_21ujm")
 DAMAGE = 2
 ATTACK_TYPE = 1
