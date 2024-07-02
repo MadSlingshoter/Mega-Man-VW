@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cds61asgr1vhl"]
+[gd_scene load_steps=57 format=3 uid="uid://cds61asgr1vhl"]
 
 [ext_resource type="Texture2D" uid="uid://c3vb2hu658gav" path="res://Art/Sprites/Mega Man/8bitMM_Idle.png" id="1_11kqb"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_vtugr"]
@@ -34,8 +34,8 @@
 shader = ExtResource("2_t28x3")
 shader_parameter/origin_color1 = Color(0, 0.45098, 0.968627, 1)
 shader_parameter/origin_color2 = Color(0, 1, 1, 1)
-shader_parameter/new_color1 = null
-shader_parameter/new_color2 = null
+shader_parameter/new_color1 = Color(0, 0.45098, 0.968627, 1)
+shader_parameter/new_color2 = Color(0, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gg6wq"]
 atlas = ExtResource("2_2r2n5")
@@ -241,6 +241,13 @@ size = Vector2(24, 19)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xjcc"]
 size = Vector2(14, 10)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7aqsj"]
+shader = ExtResource("2_t28x3")
+shader_parameter/origin_color1 = Color(0.988235, 0.894118, 0.627451, 1)
+shader_parameter/origin_color2 = Color(0.988235, 0.988235, 0.988235, 1)
+shader_parameter/new_color1 = null
+shader_parameter/new_color2 = null
+
 [node name="Player" type="CharacterBody2D"]
 top_level = true
 position = Vector2(0, -10)
@@ -400,6 +407,7 @@ offset_bottom = -260.0
 
 [node name="EnergyBar" type="TextureProgressBar" parent="CanvasLayerBars"]
 visible = false
+material = SubResource("ShaderMaterial_7aqsj")
 offset_left = 26.3333
 offset_top = 92.0
 offset_right = 82.3333
@@ -416,6 +424,7 @@ script = ExtResource("25_hwnuu")
 [node name="PauseMenu" parent="CanvasLayerPause" instance=ExtResource("10_kp53s")]
 visible = false
 
+[connection signal="energy_bar_color_changed" from="." to="CanvasLayerBars/EnergyBar" method="_on_player_energy_bar_color_changed"]
 [connection signal="health_changed" from="." to="CanvasLayerBars/HealthBar" method="_on_player_health_changed"]
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
 [connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
