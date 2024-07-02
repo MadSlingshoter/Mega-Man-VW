@@ -11,4 +11,6 @@ func _on_shooting_controller_energy_updated(new_energy):
 		show()
 
 
-# change color based on the equipped weapon and visibility
+func _on_player_energy_bar_color_changed(new_color1, new_color2):
+	material.set("shader_param/new_color1", new_color1)
+	material.set("shader_param/new_color2", new_color2)

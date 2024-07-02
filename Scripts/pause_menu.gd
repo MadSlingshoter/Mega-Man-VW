@@ -68,32 +68,23 @@ func unpause():
 	get_tree().paused = false
 
 
-
-#func _on_button_resume_pressed():
-#	unpause()
-
-
 func _on_exit_button_pressed():
 	unpause()
 	Global.can_pause = false
 	Global.goto_scene(Global.Level.stage_select)
 
-
-
+func switch_weapon(new_weapon: Global.Weapon):
+	if (player.shooting_controller.curr_weapon != new_weapon):
+		player.shooting_controller.switch_weapons(new_weapon)
+		player.switch_color()
 
 func _on_button0_pressed():
-	if (player.shooting_controller.curr_weapon != Global.Weapon.mega_buster):
-		# get_tree().get_nodes_in_group("shots").clear() not clear but queue_free() all nodes
-		player.shooting_controller.switch_weapons(Global.Weapon.mega_buster)
-		# change color
+	switch_weapon(Global.Weapon.mega_buster)
 	
 	unpause()
 
 func _on_button1_pressed():
-	if (player.shooting_controller.curr_weapon != Global.Weapon.bowser_fire):
-		# get_tree().get_nodes_in_group("shots").clear() not clear but queue_free() all nodes
-		player.shooting_controller.switch_weapons(Global.Weapon.bowser_fire)
-		# change color
+	switch_weapon(Global.Weapon.bowser_fire)
 	
 	unpause()
 

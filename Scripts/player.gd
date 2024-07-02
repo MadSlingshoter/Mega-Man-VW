@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal health_changed(new_health)
+signal energy_bar_color_changed(new_color1: Color, new_color2: Color)
 
 const MAX_SHOTS = 3
 
@@ -44,9 +45,8 @@ func _ready():
 	Global.can_pause = true
 	state_machine.init(self)
 	shooting_controller.init(self)
+	switch_color()
 	Global.player = self
-#	animations.material.set("shader_param/new_color1", Color(1.0, 0.0, 0.0))
-#	animations.material.set("shader_param/new_color2", Color(0.0, 1.0, 0.0))
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -99,7 +99,21 @@ func shoot():
 		if shooting_controller.shoot():
 			shooting_timer.start()
 
-
+func switch_color():
+	var new_color1
+	var new_color2
+	match shooting_controller.curr_weapon:
+		Global.Weapon.mega_buster:
+			new_color1 = Color(0.0, 0.45, 0.97)
+			new_color2 = Color(0.0, 1.0, 1.0)
+			
+		Global.Weapon.bowser_fire:
+			new_color1 = Color(0.0, 0.51, 0.0)
+			new_color2 = Color(0.85, 0.6, 0.17)
+	
+	animations.material.set("shader_param/new_color1", new_color1)
+	animations.material.set("shader_param/new_color2", new_color2)
+	emit_signal("energy_bar_color_changed", new_color1, new_color2)
 
 func _on_health_health_damaged(new_health):
 	effects_animation.play("flash")
