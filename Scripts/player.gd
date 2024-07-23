@@ -37,8 +37,6 @@ var curr_room: Room
 @onready var cam = $CameraCustom
 @onready var shooting_controller = $ShootingController
 @onready var shot_point = $ShotPoint
-@onready var mega_buster = preload("res://Weapons/mega_buster.tscn")
-var b
 
 func _ready():
 	#teleport in animation
@@ -176,6 +174,7 @@ func room_transition(room: Room):
 		curr_room = room
 		
 		cam.screen_transition(new_limit_top, new_limit_left, new_limit_bottom, new_limit_right, transition_dir)
+		Global.clear_screen()
 		get_tree().paused = true
 
 func gate_transition(boss_gate: BossGate):

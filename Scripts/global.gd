@@ -79,3 +79,11 @@ func restart_level():
 
 #func _deferred_restart_scene():
 #	curr_scene.get_tree().reload_current_scene()
+
+func clear_screen():
+	for shot in get_tree().get_nodes_in_group("shots"):
+		shot.queue_free()
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.queue_free()
+	for shot in get_tree().get_nodes_in_group("enemy_shots"):
+		shot.queue_free()

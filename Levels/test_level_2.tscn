@@ -199,6 +199,10 @@ layer_0/tile_data = PackedInt32Array(786446, 524290, 0, 786447, 524290, 0, 85198
 position = Vector2(240, 120)
 shape = SubResource("RectangleShape2D_tjtxx")
 
+[node name="EnemySpawner" parent="Rooms/Room1" instance=ExtResource("6_veuc7")]
+position = Vector2(408, 192)
+enemy = ExtResource("7_05wdb")
+
 [node name="Room2" parent="Rooms" instance=ExtResource("3_430bg")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room2"]
@@ -251,10 +255,6 @@ position = Vector2(1037, 203)
 
 [node name="FireBar" parent="." instance=ExtResource("5_hm41p")]
 position = Vector2(154, 112)
-
-[node name="EnemySpawner" parent="." instance=ExtResource("6_veuc7")]
-position = Vector2(369, 192)
-enemy = ExtResource("7_05wdb")
 
 [connection signal="area_entered" from="Rooms/Room4" to="." method="_on_room_4_area_entered"]
 [connection signal="area_entered" from="Deathplanes" to="." method="_on_deathplanes_area_entered"]

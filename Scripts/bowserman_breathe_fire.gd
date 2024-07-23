@@ -31,6 +31,7 @@ func _on_fire_ready():
 	b.init(parent.direction)
 	get_parent().add_child(b)
 	b.global_position = parent.fire_point.global_position
+	b.add_to_group("enemy_shots")
 	animations.animation_finished.disconnect(_on_fire_ready)
 
 func _on_pre_jump_timer_timeout():

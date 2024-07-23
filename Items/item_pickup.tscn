@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rlu4q3mbcp8g"]
+
+[ext_resource type="Script" path="res://Scripts/item_pickup.gd" id="1_t3v84"]
+
+[node name="ItemPickup" type="CharacterBody2D"]
+script = ExtResource("1_t3v84")

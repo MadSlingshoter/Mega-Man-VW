@@ -9,6 +9,7 @@ var direction = 1
 @onready var animations = $Animations
 @onready var raycast_side = $RayCastSide
 @onready var health = $Health
+@onready var enemy_death = $EnemyDeathComponent
 
 func _ready():
 	if Global.player.global_position.x < global_position.x:
@@ -37,7 +38,7 @@ func turn_around():
 	scale.x = -scale.x
 
 func _on_health_killed():
-	#add death explosion
+	enemy_death.death()
 	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

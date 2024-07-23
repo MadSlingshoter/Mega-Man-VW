@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxqsrwt4d80hs"]
+[gd_scene load_steps=20 format=3 uid="uid://bxqsrwt4d80hs"]
 
 [ext_resource type="Script" path="res://Scripts/koopa_troopa.gd" id="1_2nsbv"]
 [ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_gmnby"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://n4ylhrx2ol6" path="res://Characters/Components/shield_box.tscn" id="5_0v7ea"]
 [ext_resource type="Texture2D" uid="uid://ds7dkwopouxrg" path="res://Art/Sprites/Enemies/Koopa Hide.png" id="6_rx5ef"]
 [ext_resource type="Texture2D" uid="uid://bbmgy81kgsswu" path="res://Art/Sprites/Enemies/Koopa Walk.png" id="7_tc77u"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="8_0782m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftm2g"]
 size = Vector2(14, 14)
@@ -119,7 +120,7 @@ disabled = true
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ab01t")
-animation = &"emerging"
+animation = &"walk"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-2.98023e-07, 1.5)
@@ -133,6 +134,9 @@ target_position = Vector2(8, 0)
 position = Vector2(10, -10)
 target_position = Vector2(0, 28)
 hit_from_inside = true
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("8_0782m")]
+position = Vector2(0, 4)
 
 [connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
 [connection signal="killed" from="Health" to="." method="_on_health_killed"]
