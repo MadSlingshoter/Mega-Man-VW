@@ -1,16 +1,18 @@
-[gd_scene load_steps=27 format=3 uid="uid://b0p4retaumoj5"]
+[gd_scene load_steps=29 format=3 uid="uid://b0p4retaumoj5"]
 
 [ext_resource type="Texture2D" uid="uid://c2smo16kv7y07" path="res://Art/Tilesets/smb tileset.png" id="1_eakx3"]
 [ext_resource type="Script" path="res://Scripts/bowser_man_stage.gd" id="1_w41xp"]
 [ext_resource type="PackedScene" uid="uid://cplpdngl3vu5k" path="res://Levels/room_1.tscn" id="3_0ts2a"]
+[ext_resource type="PackedScene" uid="uid://clokuk5f0q737" path="res://EnemySpawners/enemy_spawner.tscn" id="4_7h8k2"]
 [ext_resource type="PackedScene" uid="uid://jq7lnra5mt86" path="res://Levels/Platforms/smb_platform_source.tscn" id="4_oagod"]
-[ext_resource type="PackedScene" uid="uid://b018mm6l24sjx" path="res://EnemySpawners/goomba_spawner.tscn" id="4_rdgme"]
 [ext_resource type="PackedScene" uid="uid://bp063vodx6yll" path="res://Levels/boss_gate.tscn" id="4_rmarm"]
+[ext_resource type="PackedScene" uid="uid://ci81l4emhw6vh" path="res://Characters/Enemies/goomba.tscn" id="5_e565k"]
 [ext_resource type="PackedScene" uid="uid://w5caejcxt3xh" path="res://Levels/boss_room.tscn" id="5_l6wpp"]
-[ext_resource type="PackedScene" uid="uid://d0s5w622obts6" path="res://EnemySpawners/koopa_troopa_spawner.tscn" id="5_sm6dd"]
+[ext_resource type="PackedScene" uid="uid://bxqsrwt4d80hs" path="res://Characters/Enemies/koopa_troopa.tscn" id="6_ftawk"]
 [ext_resource type="PackedScene" uid="uid://be5wmlaf3vxs1" path="res://EnemySpawners/boss_spawner.tscn" id="6_pdmld"]
 [ext_resource type="PackedScene" uid="uid://cta22d0u0444" path="res://Characters/Enemies/fire_bar.tscn" id="6_us1ej"]
 [ext_resource type="PackedScene" uid="uid://d3fini7tuvhkp" path="res://Characters/Bosses/bowser_man.tscn" id="7_47m3l"]
+[ext_resource type="PackedScene" uid="uid://rlu4q3mbcp8g" path="res://Items/item_pickup.tscn" id="7_w6str"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qekcc"]
 texture = ExtResource("1_eakx3")
@@ -1505,6 +1507,86 @@ position = Vector2(-20, 0)
 position = Vector2(10, 120)
 shape = SubResource("RectangleShape2D_5ik2h")
 
+[node name="GoombaSpawner1" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(328, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner2" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(825, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner3" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(838, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner4" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(1284, 112)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner5" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(1304, 112)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner6" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(1542, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner7" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(1562, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="KoopaTroopaSpawner1" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(1703, 208)
+enemy = ExtResource("6_ftawk")
+
+[node name="GoombaSpawner8" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(1818, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner9" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(1838, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner10" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(1995, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner11" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(2015, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner12" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(2054, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner13" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(2074, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner14" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(2776, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner15" parent="Rooms/Room1" instance=ExtResource("4_7h8k2")]
+position = Vector2(2796, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="BigHealth1" parent="Rooms/Room1" instance=ExtResource("7_w6str")]
+position = Vector2(344, 152)
+type = 2
+
+[node name="BigHealth2" parent="Rooms/Room1" instance=ExtResource("7_w6str")]
+position = Vector2(1256, 152)
+type = 2
+
+[node name="ExtraLife1" parent="Rooms/Room1" instance=ExtResource("7_w6str")]
+position = Vector2(1624, 136)
+type = 5
+
+[node name="BigEnergy1" parent="Rooms/Room1" instance=ExtResource("7_w6str")]
+position = Vector2(2624, 168)
+type = 4
+
 [node name="Room2" parent="Rooms" instance=ExtResource("3_0ts2a")]
 position = Vector2(3216, 0)
 checkpoint_number = 1
@@ -1538,17 +1620,118 @@ position = Vector2(2507, -10)
 position = Vector2(2267, 250)
 direction = -1
 
+[node name="GoombaSpawner1" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(230, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner2" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(250, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner3" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(472, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="KoopaTroopaSpawner1" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(685, 208)
+enemy = ExtResource("6_ftawk")
+
+[node name="KoopaTroopaSpawner2" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(705, 208)
+enemy = ExtResource("6_ftawk")
+
+[node name="KoopaTroopaSpawner3" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(930, 208)
+enemy = ExtResource("6_ftawk")
+
+[node name="GoombaSpawner4" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(982, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner5" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(1012, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner6" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(1160, 96)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner7" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(1224, 160)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner8" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(1244, 160)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner9" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(1594, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner10" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(1614, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner11" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(1634, 208)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner12" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(2179, 144)
+enemy = ExtResource("5_e565k")
+
+[node name="GoombaSpawner13" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(2199, 144)
+enemy = ExtResource("5_e565k")
+
+[node name="KoopaTroopaSpawner4" parent="Rooms/Room3" instance=ExtResource("4_7h8k2")]
+position = Vector2(2331, 208)
+enemy = ExtResource("6_ftawk")
+
+[node name="SmallHealth1" parent="Rooms/Room3" instance=ExtResource("7_w6str")]
+position = Vector2(168, 140)
+type = 1
+
+[node name="BigHealth1" parent="Rooms/Room3" instance=ExtResource("7_w6str")]
+position = Vector2(984, 136)
+type = 2
+
+[node name="BigEnergy1" parent="Rooms/Room3" instance=ExtResource("7_w6str")]
+position = Vector2(1096, 136)
+type = 4
+
+[node name="BigHealth2" parent="Rooms/Room3" instance=ExtResource("7_w6str")]
+position = Vector2(2408, 120)
+type = 2
+
 [node name="Room4" parent="Rooms" instance=ExtResource("3_0ts2a")]
 position = Vector2(6016, 240)
+checkpoint_number = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room4"]
 position = Vector2(1032, 120)
 shape = SubResource("RectangleShape2D_7pxtk")
 
+[node name="SmallHealth1" parent="Rooms/Room4" instance=ExtResource("7_w6str")]
+position = Vector2(488, 108)
+type = 1
+
+[node name="SmallHealth2" parent="Rooms/Room4" instance=ExtResource("7_w6str")]
+position = Vector2(1240, 140)
+type = 1
+
+[node name="SmallHealth3" parent="Rooms/Room4" instance=ExtResource("7_w6str")]
+position = Vector2(1368, 140)
+type = 1
+
+[node name="SmallHealth4" parent="Rooms/Room4" instance=ExtResource("7_w6str")]
+position = Vector2(1496, 140)
+type = 1
+
 [node name="Room5" parent="Rooms" node_paths=PackedStringArray("boss_gate") instance=ExtResource("3_0ts2a")]
 position = Vector2(8080, 240)
 boss_gate = NodePath("BossGate")
-checkpoint_number = 2
+checkpoint_number = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room5"]
 position = Vector2(128, 120)
@@ -1600,108 +1783,10 @@ position = Vector2(39, -32)
 position = Vector2(3374, 160)
 
 [node name="Checkpoint2" type="Node2D" parent="."]
-position = Vector2(8207, 400)
+position = Vector2(6114, 400)
 
-[node name="EnemySpawners" type="Node" parent="."]
-
-[node name="GoombaSpawner" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(328, -32)
-
-[node name="GoombaSpawner2" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(825, -32)
-
-[node name="GoombaSpawner3" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(838, -32)
-
-[node name="GoombaSpawner4" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(1284, -128)
-
-[node name="GoombaSpawner5" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(1304, -128)
-
-[node name="GoombaSpawner6" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(1542, -32)
-
-[node name="GoombaSpawner7" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(1562, -32)
-
-[node name="KoopaTroopaSpawner" parent="EnemySpawners" instance=ExtResource("5_sm6dd")]
-position = Vector2(1703, -32)
-
-[node name="GoombaSpawner8" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(1818, -32)
-
-[node name="GoombaSpawner9" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(1838, -32)
-
-[node name="GoombaSpawner10" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(1995, -32)
-
-[node name="GoombaSpawner11" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(2015, -32)
-
-[node name="GoombaSpawner12" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(2054, -32)
-
-[node name="GoombaSpawner13" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(2074, -32)
-
-[node name="GoombaSpawner14" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(2776, -32)
-
-[node name="GoombaSpawner15" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(2796, -32)
-
-[node name="GoombaSpawner16" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(3446, 448)
-
-[node name="GoombaSpawner17" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(3466, 448)
-
-[node name="GoombaSpawner18" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(3688, 448)
-
-[node name="KoopaTroopaSpawner2" parent="EnemySpawners" instance=ExtResource("5_sm6dd")]
-position = Vector2(3901, 448)
-
-[node name="KoopaTroopaSpawner3" parent="EnemySpawners" instance=ExtResource("5_sm6dd")]
-position = Vector2(3921, 448)
-
-[node name="KoopaTroopaSpawner4" parent="EnemySpawners" instance=ExtResource("5_sm6dd")]
-position = Vector2(4146, 448)
-
-[node name="GoombaSpawner19" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(4198, 448)
-
-[node name="GoombaSpawner20" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(4228, 448)
-
-[node name="GoombaSpawner21" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(4376, 336)
-
-[node name="GoombaSpawner22" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(4440, 400)
-
-[node name="GoombaSpawner23" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(4460, 400)
-
-[node name="GoombaSpawner24" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(4810, 448)
-
-[node name="GoombaSpawner25" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(4830, 448)
-
-[node name="GoombaSpawner26" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(4850, 448)
-
-[node name="GoombaSpawner27" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(5395, 384)
-
-[node name="GoombaSpawner28" parent="EnemySpawners" instance=ExtResource("4_rdgme")]
-position = Vector2(5415, 384)
-
-[node name="KoopaTroopaSpawner5" parent="EnemySpawners" instance=ExtResource("5_sm6dd")]
-position = Vector2(5547, 448)
+[node name="Checkpoint3" type="Node2D" parent="."]
+position = Vector2(8206, 400)
 
 [node name="EnemyHazards" type="Node" parent="."]
 
