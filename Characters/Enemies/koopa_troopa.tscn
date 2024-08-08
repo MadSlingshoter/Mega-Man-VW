@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxqsrwt4d80hs"]
+[gd_scene load_steps=21 format=3 uid="uid://bxqsrwt4d80hs"]
 
 [ext_resource type="Script" path="res://Scripts/koopa_troopa.gd" id="1_2nsbv"]
 [ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_gmnby"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ds7dkwopouxrg" path="res://Art/Sprites/Enemies/Koopa Hide.png" id="6_rx5ef"]
 [ext_resource type="Texture2D" uid="uid://bbmgy81kgsswu" path="res://Art/Sprites/Enemies/Koopa Walk.png" id="7_tc77u"]
 [ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="8_0782m"]
+[ext_resource type="PackedScene" uid="uid://cyklypgvgjjx5" path="res://Characters/Components/item_drop_component.tscn" id="9_hnvxl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftm2g"]
 size = Vector2(14, 14)
@@ -82,8 +83,8 @@ position = Vector2(0, -12)
 collision_layer = 4
 script = ExtResource("1_2nsbv")
 SPEED = 40.0
-MAX_HIDE_TIME = 1.6
-MAX_EMERGING_TIME = 1.0
+MAX_HIDE_TIME = 1.2
+MAX_EMERGING_TIME = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -137,6 +138,9 @@ hit_from_inside = true
 
 [node name="EnemyDeathComponent" parent="." instance=ExtResource("8_0782m")]
 position = Vector2(0, 4)
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("9_hnvxl")]
+parent = NodePath("..")
 
 [connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
 [connection signal="killed" from="Health" to="." method="_on_health_killed"]

@@ -18,6 +18,8 @@ func enter() -> void:
 	# can't use this as triggers transition code
 #	parent.room_detect_box.set_deferred("disabled", true)
 #	parent.room_detect_box_slide.set_deferred("disabled", false)
+	parent.pickup_detect_box.set_deferred("disabled", true)
+	parent.pickup_detect_box_slide.set_deferred("disabled", false)
 
 func exit() -> void:
 	super()
@@ -29,6 +31,8 @@ func exit() -> void:
 	parent.hurtbox_slide.set_deferred("disabled", true)
 #	parent.room_detect_box.set_deferred("disabled", false)
 #	parent.room_detect_box_slide.set_deferred("disabled", true)
+	parent.pickup_detect_box.set_deferred("disabled", false)
+	parent.pickup_detect_box_slide.set_deferred("disabled", true)
 
 
 func process_physics(delta: float) -> PlayerState:

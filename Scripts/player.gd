@@ -33,6 +33,8 @@ var curr_room: Room
 @onready var hurtbox_slide = $Hurtbox/HurtBoxCollisionSlide
 @onready var room_detect_box = $RoomDetector/DetectorBox
 @onready var room_detect_box_slide = $RoomDetector/DetectorBoxSlide
+@onready var pickup_detect_box = $PickupDetector/PickupBox
+@onready var pickup_detect_box_slide = $PickupDetector/PickupBoxSlide
 @onready var shape_cast_slide = $ShapeCastSlide
 @onready var cam = $CameraCustom
 @onready var shooting_controller = $ShootingController
@@ -125,6 +127,19 @@ func _on_health_killed():
 
 func _on_health_invul_over():
 	effects_animation.play("rest")
+
+func _on_pickup_detector_area_entered(area):
+	if area is PickupBox:
+		if area.parent.type == Global.Pickup.small_health or area.parent.type == Global.Pickup.big_health:
+			health.heal(area.parent.value)
+		elif area.parent.type == Global.Pickup.small_energy or area.parent.type == Global.Pickup.big_energy:
+			shooting_controller.add_energy(area.parent.value)
+		elif area.parent.type == Global.Pickup.extra_life:
+			Global.num_of_lives += 1
+		area.parent.queue_free()
+
+func _on_health_health_healed(new_health):
+	emit_signal("health_changed",new_health)
 
 # camera things for transitioning to new screen
 func _on_room_detector_area_entered(area):
@@ -231,5 +246,8 @@ func _on_gate_closed():
 	process_mode = Node.PROCESS_MODE_INHERIT
 	velocity.y = saved_velocity_y
 	curr_room.when_entered()
+
+
+
 
 

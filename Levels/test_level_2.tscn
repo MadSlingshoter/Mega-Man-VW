@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dh5b6p5trnsfv"]
+[gd_scene load_steps=17 format=3 uid="uid://dh5b6p5trnsfv"]
 
 [ext_resource type="Script" path="res://Scripts/test_level_2.gd" id="1_ec6d2"]
 [ext_resource type="Texture2D" uid="uid://ds4mijl1lum1g" path="res://Art/Tilesets/mm2woodtilesetgr6.png" id="1_hdvcl"]
 [ext_resource type="PackedScene" uid="uid://cplpdngl3vu5k" path="res://Levels/room_1.tscn" id="3_430bg"]
 [ext_resource type="PackedScene" uid="uid://bp063vodx6yll" path="res://Levels/boss_gate.tscn" id="4_hdxlw"]
 [ext_resource type="PackedScene" uid="uid://cta22d0u0444" path="res://Characters/Enemies/fire_bar.tscn" id="5_hm41p"]
+[ext_resource type="PackedScene" uid="uid://rlu4q3mbcp8g" path="res://Items/item_pickup.tscn" id="6_eebwq"]
 [ext_resource type="PackedScene" uid="uid://clokuk5f0q737" path="res://EnemySpawners/enemy_spawner.tscn" id="6_veuc7"]
 [ext_resource type="PackedScene" uid="uid://ci81l4emhw6vh" path="res://Characters/Enemies/goomba.tscn" id="7_05wdb"]
 
@@ -194,6 +195,7 @@ layer_0/tile_data = PackedInt32Array(786446, 524290, 0, 786447, 524290, 0, 85198
 [node name="Rooms" type="Node" parent="."]
 
 [node name="Room1" parent="Rooms" instance=ExtResource("3_430bg")]
+checkpoint_number = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room1"]
 position = Vector2(240, 120)
@@ -202,6 +204,26 @@ shape = SubResource("RectangleShape2D_tjtxx")
 [node name="EnemySpawner" parent="Rooms/Room1" instance=ExtResource("6_veuc7")]
 position = Vector2(408, 192)
 enemy = ExtResource("7_05wdb")
+
+[node name="ItemPickup" parent="Rooms/Room1" instance=ExtResource("6_eebwq")]
+position = Vector2(105, 152)
+type = 5
+
+[node name="ItemPickup2" parent="Rooms/Room1" instance=ExtResource("6_eebwq")]
+position = Vector2(200, 152)
+type = 2
+
+[node name="ItemPickup3" parent="Rooms/Room1" instance=ExtResource("6_eebwq")]
+position = Vector2(227, 188)
+type = 1
+
+[node name="ItemPickup4" parent="Rooms/Room1" instance=ExtResource("6_eebwq")]
+position = Vector2(250, 188)
+type = 3
+
+[node name="ItemPickup5" parent="Rooms/Room1" instance=ExtResource("6_eebwq")]
+position = Vector2(284, 184)
+type = 4
 
 [node name="Room2" parent="Rooms" instance=ExtResource("3_430bg")]
 

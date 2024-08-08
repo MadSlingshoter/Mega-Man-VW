@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyklypgvgjjx5"]
+
+[ext_resource type="Script" path="res://Scripts/item_drop_component.gd" id="1_pt07y"]
+[ext_resource type="PackedScene" uid="uid://rlu4q3mbcp8g" path="res://Items/item_pickup.tscn" id="2_c0lvx"]
+
+[node name="ItemDropComponent" type="Node"]
+script = ExtResource("1_pt07y")
+item_pickup = ExtResource("2_c0lvx")
+small_health_weight = 15
+big_health_weight = 6
+small_energy_weight = 25
+big_energy_weight = 8
+extra_life_weight = 2

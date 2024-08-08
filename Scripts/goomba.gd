@@ -10,6 +10,7 @@ var direction = 1
 @onready var raycast_side = $RayCastSide
 @onready var health = $Health
 @onready var enemy_death = $EnemyDeathComponent
+@onready var item_drop = $ItemDropComponent
 
 func _ready():
 	if Global.player.global_position.x < global_position.x:
@@ -38,6 +39,7 @@ func turn_around():
 	scale.x = -scale.x
 
 func _on_health_killed():
+	item_drop.drop_pickup()
 	enemy_death.death()
 	queue_free()
 

@@ -11,3 +11,6 @@ var controller: ShootingController
 
 func shoot() -> bool:
 	return false
+
+func add_energy(value: int):
+	curr_energy = clamp(curr_energy + value, 0, MAX_ENERGY)

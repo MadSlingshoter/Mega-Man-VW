@@ -21,6 +21,7 @@ var time : float = -2.0
 @onready var contact_collision_hide = $ContactBox/CollisionShapeHide
 @onready var shield_collision_hide = $ShieldBox/CollisionShapeHide
 @onready var enemy_death = $EnemyDeathComponent
+@onready var item_drop = $ItemDropComponent
 
 func _ready():
 	if Global.player.global_position.x < global_position.x:
@@ -86,6 +87,7 @@ func _on_health_health_damaged(_health):
 	shield_collision_hide.set_deferred("disabled", false)
 
 func _on_health_killed():
+	item_drop.drop_pickup()
 	enemy_death.death()
 	queue_free()
 
