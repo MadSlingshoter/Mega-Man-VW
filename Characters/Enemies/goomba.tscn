@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ci81l4emhw6vh"]
+[gd_scene load_steps=14 format=3 uid="uid://ci81l4emhw6vh"]
 
 [ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="1_oguqm"]
 [ext_resource type="Script" path="res://Scripts/goomba.gd" id="1_qiye4"]
 [ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="2_khcqv"]
 [ext_resource type="Texture2D" uid="uid://b7p07ueu1n0sq" path="res://Art/Sprites/Enemies/Goomba.png" id="4_qekh7"]
 [ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="5_gh3ty"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="6_4rlsa"]
+[ext_resource type="PackedScene" uid="uid://cyklypgvgjjx5" path="res://Characters/Components/item_drop_component.tscn" id="7_x4sde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7a1gx"]
 size = Vector2(14, 15)
@@ -71,6 +73,11 @@ shape = SubResource("RectangleShape2D_4p3km")
 
 [node name="RayCastSide" type="RayCast2D" parent="."]
 target_position = Vector2(8, 0)
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("6_4rlsa")]
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("7_x4sde")]
+parent = NodePath("..")
 
 [connection signal="killed" from="Health" to="." method="_on_health_killed"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

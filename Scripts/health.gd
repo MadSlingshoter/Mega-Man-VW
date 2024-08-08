@@ -49,7 +49,7 @@ func pierce_damage(value) -> bool:
 func heal(value):
 	if can_interact:
 		var prev_health = curr_health
-		curr_health = clamp(curr_health - value, 0, MAX_HEALTH)
+		curr_health = clamp(curr_health + value, 0, MAX_HEALTH)
 		
 		if curr_health != prev_health:
 			emit_signal("health_healed", curr_health)

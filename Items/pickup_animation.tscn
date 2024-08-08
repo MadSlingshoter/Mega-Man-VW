@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl6rrjghm2d5j"]
+
+[ext_resource type="Texture2D" uid="uid://di7b2ko8ukbpd" path="res://Art/Sprites/Items/SmallHealth.png" id="1_awo6f"]
+[ext_resource type="Script" path="res://Scripts/pickup_animation.gd" id="2_r63d0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft4i6"]
+atlas = ExtResource("1_awo6f")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1hn0"]
+atlas = ExtResource("1_awo6f")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5yf2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft4i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1hn0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="Animation" id="Animation_knkxo"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_pk2ur"]
+resource_name = "rest"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r73qa"]
+_data = {
+"flash": SubResource("Animation_knkxo"),
+"rest": SubResource("Animation_pk2ur")
+}
+
+[node name="PickupAnimation" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_t5yf2")
+autoplay = "default"
+script = ExtResource("2_r63d0")
+
+[node name="EffectsAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r73qa")
+}

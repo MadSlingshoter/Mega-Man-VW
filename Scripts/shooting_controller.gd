@@ -44,3 +44,8 @@ func get_energies() -> Array[int]:
 	# if statements for rest of bosses
 	
 	return energies
+
+func add_energy(value: int):
+	if curr_weapon != Global.Weapon.mega_buster:
+		curr_weapon_state.add_energy(value)
+		emit_signal("energy_updated", curr_weapon_state.curr_energy)

@@ -11,6 +11,7 @@ func enter() -> void:
 	d = death_source.instantiate()
 	parent.add_child(d)
 	d.global_position = parent.global_position
+	Global.clear_screen()
 	get_tree().paused = true
 
 

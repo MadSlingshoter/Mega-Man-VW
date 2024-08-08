@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cds61asgr1vhl"]
+[gd_scene load_steps=59 format=3 uid="uid://cds61asgr1vhl"]
 
 [ext_resource type="Texture2D" uid="uid://c3vb2hu658gav" path="res://Art/Sprites/Mega Man/8bitMM_Idle.png" id="1_11kqb"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_vtugr"]
@@ -238,6 +238,12 @@ size = Vector2(20, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtufu"]
 size = Vector2(24, 19)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_keyjj"]
+size = Vector2(20, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqmv8"]
+size = Vector2(24, 19)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xjcc"]
 size = Vector2(14, 10)
 
@@ -309,6 +315,19 @@ shape = SubResource("RectangleShape2D_aloiu")
 [node name="DetectorBoxSlide" type="CollisionShape2D" parent="RoomDetector"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_rtufu")
+disabled = true
+
+[node name="PickupDetector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 128
+
+[node name="PickupBox" type="CollisionShape2D" parent="PickupDetector"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_keyjj")
+
+[node name="PickupBoxSlide" type="CollisionShape2D" parent="PickupDetector"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_wqmv8")
 disabled = true
 
 [node name="Health" parent="." instance=ExtResource("10_a65bd")]
@@ -427,7 +446,9 @@ visible = false
 [connection signal="energy_bar_color_changed" from="." to="CanvasLayerBars/EnergyBar" method="_on_player_energy_bar_color_changed"]
 [connection signal="health_changed" from="." to="CanvasLayerBars/HealthBar" method="_on_player_health_changed"]
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
+[connection signal="area_entered" from="PickupDetector" to="." method="_on_pickup_detector_area_entered"]
 [connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
+[connection signal="health_healed" from="Health" to="." method="_on_health_health_healed"]
 [connection signal="invul_over" from="Health" to="." method="_on_health_invul_over"]
 [connection signal="killed" from="Health" to="." method="_on_health_killed"]
 [connection signal="energy_updated" from="ShootingController" to="CanvasLayerBars/EnergyBar" method="_on_shooting_controller_energy_updated"]

@@ -3,6 +3,7 @@ extends Node
 enum TransitionDir {up, down, left, right}
 enum Weapon {mega_buster, bowser_fire, weapon2, weapon3, weapon4, weapon5, weapon6, weapon7, weapon8, enemy, hazard}
 enum Level {start_menu, stage_select, continue_menu, bowser_man, test1, test2, test_boss}
+enum Pickup {random_drop, small_health, big_health, small_energy, big_energy, extra_life} # to add: tanks
 
 var curr_scene = null
 
@@ -79,3 +80,11 @@ func restart_level():
 
 #func _deferred_restart_scene():
 #	curr_scene.get_tree().reload_current_scene()
+
+func clear_screen():
+	for shot in get_tree().get_nodes_in_group("shots"):
+		shot.queue_free()
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.queue_free()
+	for shot in get_tree().get_nodes_in_group("enemy_shots"):
+		shot.queue_free()
