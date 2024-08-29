@@ -334,6 +334,7 @@ disabled = true
 HAS_INVULNERABILITY = true
 INVULNERABILITY_LENGTH = 2.0
 MAX_HEALTH = 28
+IS_PLAYER = true
 
 [node name="PlayerStateManager" parent="." node_paths=PackedStringArray("starting_state", "hurt_state", "death_state") instance=ExtResource("10_4pj7k")]
 starting_state = NodePath("PlayerIdle")

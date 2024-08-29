@@ -9,6 +9,7 @@ func _ready():
 
 func enter() -> void:
 	death_timer.start()
+	AudioManager.play_death_sound()
 	parent.animations.hide()
 	Global.can_pause = false
 	d = death_source.instantiate()

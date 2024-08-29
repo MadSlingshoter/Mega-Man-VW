@@ -14,6 +14,7 @@ func enter() -> void:
 
 func process_physics(delta: float) -> State:
 	if parent.is_on_floor():
+		AudioManager.play_stomp_sound()
 		return stand_up_state
 	if delay_timer.is_stopped():
 		parent.velocity.y = STOMP_SPEED

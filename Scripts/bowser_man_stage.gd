@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var music_path: String
+
 @onready var cp0 = $Checkpoint0
 @onready var cp1 = $Checkpoint1
 @onready var cp2 = $Checkpoint2
@@ -21,6 +23,8 @@ func _ready():
 		p.global_position = cp2.global_position
 	elif Global.checkpoint_num == 3:
 		p.global_position = cp3.global_position
+	
+	AudioManager.play_music(music_path)
 
 func _on_pits_area_entered(area):
 	if area is Hurtbox and area.get_parent() is Player:
