@@ -111,8 +111,8 @@ func switch_color():
 			new_color1 = Color(0.0, 0.51, 0.0)
 			new_color2 = Color(0.85, 0.6, 0.17)
 	
-	animations.material.set("shader_param/new_color1", new_color1)
-	animations.material.set("shader_param/new_color2", new_color2)
+	animations.material.set("shader_parameter/new_color1", new_color1)
+	animations.material.set("shader_parameter/new_color2", new_color2)
 	emit_signal("energy_bar_color_changed", new_color1, new_color2)
 
 func _on_health_health_damaged(new_health):
@@ -136,6 +136,7 @@ func _on_pickup_detector_area_entered(area):
 			shooting_controller.add_energy(area.parent.value)
 		elif area.parent.type == Global.Pickup.extra_life:
 			Global.num_of_lives += 1
+			AudioManager.play_extra_life_sound()
 		area.parent.queue_free()
 
 func _on_health_health_healed(new_health):

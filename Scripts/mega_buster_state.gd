@@ -12,5 +12,6 @@ func shoot() -> bool:
 		parent.get_parent().add_child(projectile)
 		projectile.global_position = parent.shot_point.global_position
 		projectile.add_to_group("shots")
+		AudioManager.play_player_shoot_sound()
 		return true
 	return false

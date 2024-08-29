@@ -14,6 +14,7 @@ func enter() -> void:
 	super()
 	parent.velocity.y = 0
 	hurt_timer.start()
+	AudioManager.play_player_hurt_sound()
 
 func process_physics(delta: float) -> PlayerState:
 	parent.velocity.y = min(parent.velocity.y + gravity * delta, parent.MAX_FALL_SPEED)

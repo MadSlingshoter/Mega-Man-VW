@@ -43,6 +43,7 @@ func _input(event : InputEvent):
 
 func pause():
 	show()
+	AudioManager.play_pause_sound()
 	get_tree().paused = true
 	
 	# Set focus
@@ -65,6 +66,7 @@ func pause():
 
 func unpause():
 	hide()
+	AudioManager.play_pause_sound()
 	get_tree().paused = false
 
 

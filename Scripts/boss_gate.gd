@@ -11,7 +11,9 @@ func _ready():
 func open():
 	animations.play("open")
 	collision_shape.set_deferred("disabled", true)
+	AudioManager.play_gate_sound()
 
 func close():
 	animations.play("close")
 	collision_shape.set_deferred("disabled", false)
+	AudioManager.play_gate_sound()

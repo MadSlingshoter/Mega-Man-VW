@@ -33,6 +33,7 @@ func process_physics(delta: float) -> PlayerState:
 	parent.move_and_slide()
 	
 	if parent.is_on_floor():
+		AudioManager.play_landing_sound()
 		if direction != 0:
 			return move_state
 		return idle_state

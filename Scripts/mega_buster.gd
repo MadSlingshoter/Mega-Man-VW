@@ -25,6 +25,7 @@ func _on_area_entered(area):
 	if area is ShieldBox:
 		collision_shape.set_deferred("disabled", true)
 		is_relected = true
+		AudioManager.play_relected_sound()
 	if area is Hurtbox:
 		area.damage(attack)
 		queue_free()
