@@ -3,7 +3,7 @@ extends PlayerState
 @export var idle_state : PlayerState
 @export var move_state : PlayerState
 @export var fall_state : PlayerState
-#@export var climb_state : PlayerState
+@export var climb_state : PlayerState
 
 @export var jump_speed: float = -285.0
 
@@ -15,6 +15,9 @@ func process_input(event: InputEvent) -> PlayerState:
 	if Input.is_action_just_released("jump"):
 		parent.velocity.y = 0   # cannot be in player_fall due to can fall in other states
 		return fall_state
+	if Input.is_action_pressed("up") or Input.is_action_pressed("down"):
+		if parent.curr_ladder != null:
+			return climb_state
 	return null
 
 func process_physics(delta: float) -> PlayerState:

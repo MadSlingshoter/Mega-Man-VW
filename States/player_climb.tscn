@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgu0hevnjr4po"]
+
+[ext_resource type="Script" path="res://Scripts/player_climb.gd" id="1_i5xbt"]
+
+[node name="PlayerClimb" type="Node"]
+script = ExtResource("1_i5xbt")
+move_speed = 70.0
+can_shoot = true
