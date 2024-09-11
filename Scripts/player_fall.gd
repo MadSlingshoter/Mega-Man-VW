@@ -2,7 +2,13 @@ extends PlayerState
 
 @export var idle_state : PlayerState
 @export var move_state : PlayerState
-#@export var climb_state : PlayerState
+@export var climb_state : PlayerState
+
+func process_input(event: InputEvent) -> PlayerState:
+	if Input.is_action_pressed("up") or Input.is_action_pressed("down"):
+		if parent.curr_ladder != null:
+			return climb_state
+	return null
 
 func process_physics(delta: float) -> PlayerState:
 	parent.velocity.y = min(parent.velocity.y + gravity * delta, parent.MAX_FALL_SPEED)

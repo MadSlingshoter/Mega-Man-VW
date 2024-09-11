@@ -16,6 +16,8 @@ var is_gate_transitioning : bool = false
 var transition_dir : Global.TransitionDir
 var saved_velocity_y : float
 var curr_room: Room
+var curr_ladder: LadderArea
+var is_climbing: bool = false
 
 @export var MAX_FALL_SPEED : float
 @export var TRANSITION_SPEED : float
@@ -35,6 +37,7 @@ var curr_room: Room
 @onready var room_detect_box_slide = $RoomDetector/DetectorBoxSlide
 @onready var pickup_detect_box = $PickupDetector/PickupBox
 @onready var pickup_detect_box_slide = $PickupDetector/PickupBoxSlide
+@onready var ladder_down_cast = $LadderDownCast
 @onready var shape_cast_slide = $ShapeCastSlide
 @onready var cam = $CameraCustom
 @onready var shooting_controller = $ShootingController
@@ -78,9 +81,12 @@ func _process(delta: float) -> void:
 
 func update_animation():
 	var animation_name = state_machine.current_state.animation_name
-	if !shooting_timer.is_stopped():
-		animation_name += "_shoot"
-	animations.play(animation_name)
+	if shooting_timer.is_stopped() and is_climbing and velocity.y == 0:
+		animations.pause()
+	else:
+		if !shooting_timer.is_stopped():
+			animation_name += "_shoot"
+		animations.play(animation_name)
 	
 
 func update_facing_direction(direction: int):
@@ -174,24 +180,25 @@ func room_transition(room: Room):
 		elif new_limit_right <= cam.limit_left:
 			transition_dir = Global.TransitionDir.left
 		elif new_limit_bottom <= cam.limit_top:
-			#should also check if player is climbing
 			transition_dir = Global.TransitionDir.up
 		elif new_limit_top >= cam.limit_bottom:
 			transition_dir = Global.TransitionDir.down
 		
-		curr_room.when_exited()
-		is_transitioning = true
-		Global.can_pause = false
-		health.can_interact = false
-		process_mode = Node.PROCESS_MODE_ALWAYS
-		saved_velocity_y = velocity.y
-		velocity.x = 0
-		velocity.y = 0
-		curr_room = room
-		
-		cam.screen_transition(new_limit_top, new_limit_left, new_limit_bottom, new_limit_right, transition_dir)
-		Global.clear_screen()
-		get_tree().paused = true
+		# only transistions upwards if on a ladder
+		if !(transition_dir == Global.TransitionDir.up and !is_climbing):
+			curr_room.when_exited()
+			is_transitioning = true
+			Global.can_pause = false
+			health.can_interact = false
+			process_mode = Node.PROCESS_MODE_ALWAYS
+			saved_velocity_y = velocity.y
+			velocity.x = 0
+			velocity.y = 0
+			curr_room = room
+			
+			cam.screen_transition(new_limit_top, new_limit_left, new_limit_bottom, new_limit_right, transition_dir)
+			Global.clear_screen()
+			get_tree().paused = true
 
 func gate_transition(boss_gate: BossGate):
 	boss_gate.open()
@@ -247,6 +254,27 @@ func _on_gate_closed():
 	process_mode = Node.PROCESS_MODE_INHERIT
 	velocity.y = saved_velocity_y
 	curr_room.when_entered()
+
+func _on_ladder_detector_area_entered(area):
+	if area is LadderArea:
+		curr_ladder = area
+
+
+func _on_ladder_detector_area_exited(area):
+	if area is LadderArea:
+		curr_ladder = null
+
+
+func _on_shooting_timer_timeout():
+	if is_climbing:
+		animations.play("climb")
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://6hrtiem8jlg0"]
+
+[ext_resource type="Script" path="res://Scripts/ladder_area.gd" id="1_toq5q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jfdx"]
+size = Vector2(16, 7)
+
+[node name="LadderArea" type="Area2D"]
+collision_layer = 256
+collision_mask = 2
+input_pickable = false
+script = ExtResource("1_toq5q")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_4jfdx")
+one_way_collision = true
