@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3gggg4fad0b5"
-path="res://.godot/imported/Metool Idle.png-c60711fa4d796df6e67dc42515ef6cb1.ctex"
+uid="uid://bbmfe0n85c5rk"
+path="res://.godot/imported/Catten.png-d0d1bec39dfcc0ff9583090ccbe61bed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/Enemies/Metool Idle.png"
-dest_files=["res://.godot/imported/Metool Idle.png-c60711fa4d796df6e67dc42515ef6cb1.ctex"]
+source_file="res://Art/Sprites/Enemies/Catten.png"
+dest_files=["res://.godot/imported/Catten.png-d0d1bec39dfcc0ff9583090ccbe61bed.ctex"]
 
 [params]
 

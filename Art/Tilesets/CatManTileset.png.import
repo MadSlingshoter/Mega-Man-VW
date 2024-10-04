@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwbvu3emgjbwr"
-path="res://.godot/imported/Enemy1.png-fbaa8e4f95b33f056983617957ea700d.ctex"
+uid="uid://cjp3kyo5ecd1f"
+path="res://.godot/imported/CatManTileset.png-22d6c64683f1bf508586ab4d20a18669.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/Enemies/Enemy1.png"
-dest_files=["res://.godot/imported/Enemy1.png-fbaa8e4f95b33f056983617957ea700d.ctex"]
+source_file="res://Art/Tilesets/CatManTileset.png"
+dest_files=["res://.godot/imported/CatManTileset.png-22d6c64683f1bf508586ab4d20a18669.ctex"]
 
 [params]
 

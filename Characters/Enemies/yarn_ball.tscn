@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://btuwhd6f3x02r"]
+
+[ext_resource type="Script" path="res://Scripts/yarn_ball.gd" id="1_61nah"]
+[ext_resource type="Texture2D" uid="uid://chnh86nuybge0" path="res://Art/Sprites/Enemies/YarnBall.png" id="1_axpcf"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="2_maofs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lb3i"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh6p0"]
+atlas = ExtResource("1_axpcf")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5uqp"]
+atlas = ExtResource("1_axpcf")
+region = Rect2(22, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqhxk"]
+atlas = ExtResource("1_axpcf")
+region = Rect2(44, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx01g"]
+atlas = ExtResource("1_axpcf")
+region = Rect2(66, 0, 22, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_goty1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh6p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5uqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqhxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx01g")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r0fd"]
+size = Vector2(16, 16)
+
+[node name="YarnBall" type="CharacterBody2D"]
+position = Vector2(-8, -8)
+collision_layer = 4
+script = ExtResource("1_61nah")
+SPEED = 80.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5lb3i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_goty1")
+animation = &"roll"
+autoplay = "roll"
+
+[node name="ContactBox" parent="." instance=ExtResource("2_maofs")]
+CONTACT_DAMAGE = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+shape = SubResource("RectangleShape2D_5r0fd")
