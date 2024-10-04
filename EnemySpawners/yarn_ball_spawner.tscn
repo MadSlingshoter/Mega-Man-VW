@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc415w6nxcirr"]
+
+[ext_resource type="Script" path="res://Scripts/yarn_ball_spawner.gd" id="1_hpg74"]
+[ext_resource type="PackedScene" uid="uid://btuwhd6f3x02r" path="res://Characters/Enemies/yarn_ball.tscn" id="2_ohsjt"]
+
+[node name="YarnBallSpawner" type="Node2D"]
+script = ExtResource("1_hpg74")
+yarn_ball = ExtResource("2_ohsjt")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.7
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

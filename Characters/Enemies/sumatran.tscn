@@ -1,0 +1,149 @@
+[gd_scene load_steps=22 format=3 uid="uid://bw7tt1yf2judh"]
+
+[ext_resource type="Script" path="res://Scripts/sumatran.gd" id="1_7qrep"]
+[ext_resource type="Texture2D" uid="uid://c4hx4iwl74wap" path="res://Art/Sprites/Enemies/Sumatran.png" id="1_ce03v"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_3wcrc"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="3_xxnhl"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="4_1jtl0"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="5_64o28"]
+[ext_resource type="PackedScene" uid="uid://cyklypgvgjjx5" path="res://Characters/Components/item_drop_component.tscn" id="6_g5gqr"]
+[ext_resource type="PackedScene" uid="uid://dfp61yfhtjdjn" path="res://Characters/Components/player_detector.tscn" id="8_ybp3f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_homrs"]
+size = Vector2(33, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4n4y0"]
+size = Vector2(52, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kohbg"]
+atlas = ExtResource("1_ce03v")
+region = Rect2(240, 0, 60, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqams"]
+atlas = ExtResource("1_ce03v")
+region = Rect2(180, 0, 60, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5gkm"]
+atlas = ExtResource("1_ce03v")
+region = Rect2(120, 0, 60, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb4ho"]
+atlas = ExtResource("1_ce03v")
+region = Rect2(60, 0, 60, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llxvw"]
+atlas = ExtResource("1_ce03v")
+region = Rect2(0, 0, 60, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d6xw4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kohbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqams")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5gkm")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb4ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llxvw")
+}],
+"loop": false,
+"name": &"land",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inysw"]
+size = Vector2(33, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sewop"]
+size = Vector2(52, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhih8"]
+size = Vector2(33, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k6yf"]
+size = Vector2(56, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg36f"]
+size = Vector2(166, 83)
+
+[node name="Sumatran" type="CharacterBody2D"]
+position = Vector2(0, -15)
+collision_layer = 4
+script = ExtResource("1_7qrep")
+SPEED = 120.0
+JUMP_FORCE = -150.0
+
+[node name="IdleCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_homrs")
+
+[node name="JumpCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_4n4y0")
+disabled = true
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d6xw4")
+animation = &"idle"
+
+[node name="Health" parent="." instance=ExtResource("2_3wcrc")]
+MAX_HEALTH = 5
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_xxnhl")]
+health = NodePath("../Health")
+
+[node name="IdleCollision" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_inysw")
+
+[node name="JumpCollision" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_sewop")
+disabled = true
+
+[node name="ContactBox" parent="." instance=ExtResource("4_1jtl0")]
+CONTACT_DAMAGE = 5
+
+[node name="IdleCollision" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_hhih8")
+
+[node name="JumpCollision" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_4k6yf")
+disabled = true
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("5_64o28")]
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("6_g5gqr")]
+parent = NodePath("..")
+
+[node name="PlayerDetector" parent="." instance=ExtResource("8_ybp3f")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_mg36f")
+debug_color = Color(0.517647, 0.576471, 0, 0.419608)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -2,7 +2,7 @@ extends Node
 
 enum TransitionDir {up, down, left, right}
 enum Weapon {mega_buster, bowser_fire, weapon2, weapon3, weapon4, weapon5, weapon6, weapon7, weapon8, enemy, hazard}
-enum Level {start_menu, stage_select, continue_menu, bowser_man, test1, test2, test_boss}
+enum Level {start_menu, stage_select, continue_menu, bowser_man, car_man, construction_man, waffle_man, police_man, lego_man, cat_man, antisora_man, test2, test_boss}
 enum Pickup {random_drop, small_health, big_health, small_energy, big_energy, extra_life} # to add: tanks
 
 var curr_scene = null
@@ -50,8 +50,8 @@ func goto_scene(scene_name : Level):
 			path = "res://Menus/continue_menu.tscn"
 		Level.bowser_man:
 			path = "res://Levels/bowser_man_stage.tscn"
-		Level.test1:
-			path = "res://Levels/test_level.tscn"
+		Level.cat_man:
+			path = "res://Levels/cat_man_stage.tscn"
 		Level.test2:
 			path = "res://Levels/test_level_2.tscn"
 		Level.test_boss:

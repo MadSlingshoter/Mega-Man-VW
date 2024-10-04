@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xwk4s66a1hxb"
-path="res://.godot/imported/Metool Walk1.png-a43a55eab9a95989a30ee1febd4ac18f.ctex"
+uid="uid://c4hx4iwl74wap"
+path="res://.godot/imported/Sumatran.png-169de51f4b13e67ec26db641ced3d078.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprites/Enemies/Metool Walk1.png"
-dest_files=["res://.godot/imported/Metool Walk1.png-a43a55eab9a95989a30ee1febd4ac18f.ctex"]
+source_file="res://Art/Sprites/Enemies/Sumatran.png"
+dest_files=["res://.godot/imported/Sumatran.png-169de51f4b13e67ec26db641ced3d078.ctex"]
 
 [params]
 

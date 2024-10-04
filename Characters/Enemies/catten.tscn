@@ -1,0 +1,119 @@
+[gd_scene load_steps=16 format=3 uid="uid://c1426elppokcy"]
+
+[ext_resource type="Script" path="res://Scripts/catten.gd" id="1_0un8o"]
+[ext_resource type="Texture2D" uid="uid://bbmfe0n85c5rk" path="res://Art/Sprites/Enemies/Catten.png" id="1_854cc"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_oxc20"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="3_bvswx"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="4_ubb41"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="5_oea5x"]
+[ext_resource type="PackedScene" uid="uid://cyklypgvgjjx5" path="res://Characters/Components/item_drop_component.tscn" id="6_todct"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slvkg"]
+size = Vector2(18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgysv"]
+atlas = ExtResource("1_854cc")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr0g5"]
+atlas = ExtResource("1_854cc")
+region = Rect2(24, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_154li"]
+atlas = ExtResource("1_854cc")
+region = Rect2(48, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfben"]
+atlas = ExtResource("1_854cc")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55cpd"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_hgysv")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_cr0g5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_154li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfben")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsahb"]
+size = Vector2(18, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfkhm"]
+size = Vector2(20, 17)
+
+[node name="Catten" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_0un8o")
+SPEED = 80.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_slvkg")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -10)
+sprite_frames = SubResource("SpriteFrames_55cpd")
+animation = &"idle"
+
+[node name="Health" parent="." instance=ExtResource("2_oxc20")]
+MAX_HEALTH = 2
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_bvswx")]
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_rsahb")
+
+[node name="ContactBox" parent="." instance=ExtResource("4_ubb41")]
+CONTACT_DAMAGE = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_gfkhm")
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("5_oea5x")]
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("6_todct")]
+parent = NodePath("..")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="IdleTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="RunTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+position = Vector2(11, -9)
+target_position = Vector2(0, 12)
+
+[node name="RayCastSide" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+target_position = Vector2(11, 0)
+
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
