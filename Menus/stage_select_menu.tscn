@@ -1,9 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1tntxvdxem8b"]
+[gd_scene load_steps=7 format=3 uid="uid://d1tntxvdxem8b"]
 
 [ext_resource type="Script" path="res://Scripts/stage_select_menu.gd" id="1_pnbmi"]
-[ext_resource type="Texture2D" uid="uid://dx7rqxcnxbmac" path="res://Art/Sprites/Boss borders/Boss border.png" id="2_5qw1v"]
+[ext_resource type="Texture2D" uid="uid://x6rtk5iwr3jb" path="res://Art/Sprites/Boss borders/Boss border Mega.png" id="2_0ciqv"]
+[ext_resource type="Texture2D" uid="uid://bpwnbhi6vxhtr" path="res://Art/Sprites/Boss borders/Boss border us.png" id="3_0cf65"]
+[ext_resource type="Texture2D" uid="uid://cwnoqpyqvpcv7" path="res://Art/Sprites/Boss borders/Boss border s1.png" id="4_eegv7"]
+[ext_resource type="Texture2D" uid="uid://deibfugj1qib0" path="res://Art/Sprites/Boss borders/Boss border s2.png" id="5_w2wl6"]
 
-[node name="StageSelectMenu" type="MarginContainer"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_vxona"]
+frames = 2
+frame_0/texture = ExtResource("4_eegv7")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("5_w2wl6")
+frame_1/duration = 0.5
+
+[node name="StageSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.235294, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,73 +43,293 @@ theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 20
 script = ExtResource("1_pnbmi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="Select1-1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_5qw1v")
-stretch_mode = 0
 
-[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-1"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_5qw1v")
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
+
+[node name="StageButton1-1" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-1/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../../../Select1-2/BossFace/StageButton1-2")
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer2/Select2-1/BossFace/StageButton2-1")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
 stretch_mode = 0
 
-[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-1"]
+layout_mode = 2
+text = "   BOWSER MAN"
+
+[node name="Select1-2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_5qw1v")
+
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
+
+[node name="StageButton1-2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-2/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../../Select1-1/BossFace/StageButton1-1")
+focus_neighbor_right = NodePath("../../../Select1-3/BossFace/StageButton1-3")
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer2/Select2-2/BossFace/StageButton2-2")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
 stretch_mode = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-2"]
+layout_mode = 2
+text = "   ??? MAN"
+
+[node name="Select1-3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
+
+[node name="StageButton1-3" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-3/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../../Select1-2/BossFace/StageButton1-2")
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer2/Select2-3/BossFace/StageButton2-3")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
+stretch_mode = 0
+
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-3"]
+layout_mode = 2
+text = "   ??? MAN"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+[node name="Select2-1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_5qw1v")
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-1"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_5qw1v")
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
 
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+[node name="StageButton2-1" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-1/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../../HBoxContainer/Select1-1/BossFace/StageButton1-1")
+focus_neighbor_right = NodePath("../../../Select2-2/BossFace/StageButton2-2")
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer3/Select3-1/BossFace/StageButton3-1")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
+stretch_mode = 0
+
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-1"]
+layout_mode = 2
+text = "   ??? MAN"
+
+[node name="Select2-2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_5qw1v")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
+
+[node name="StageButton2-2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-2/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../../Select2-1/BossFace/StageButton2-1")
+focus_neighbor_top = NodePath("../../../../HBoxContainer/Select1-2/BossFace/StageButton1-2")
+focus_neighbor_right = NodePath("../../../Select2-3/BossFace/StageButton2-3")
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer3/Select3-2/BossFace/StageButton3-2")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
+stretch_mode = 0
+
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-2"]
+layout_mode = 2
+text = "   SELECT STAGE"
+
+[node name="Select2-3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
+
+[node name="StageButton2-3" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-3/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../../Select2-2/BossFace/StageButton2-2")
+focus_neighbor_top = NodePath("../../../../HBoxContainer/Select1-3/BossFace/StageButton1-3")
+focus_neighbor_bottom = NodePath("../../../../HBoxContainer3/Select3-3/BossFace/StageButton3-3")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
+stretch_mode = 0
+
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/Select2-3"]
+layout_mode = 2
+text = "   ??? MAN"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer3"]
+[node name="Select3-1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_5qw1v")
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer3"]
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-1"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_5qw1v")
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
 
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer3"]
+[node name="StageButton3-1" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-1/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../../HBoxContainer2/Select2-1/BossFace/StageButton2-1")
+focus_neighbor_right = NodePath("../../../Select3-2/BossFace/StageButton3-2")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
+stretch_mode = 0
+
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-1"]
+layout_mode = 2
+text = "   ??? MAN"
+
+[node name="Select3-2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_5qw1v")
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton3" to="." method="_on_texture_button_3_pressed"]
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
+
+[node name="StageButton3-2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-2/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../../Select3-1/BossFace/StageButton3-1")
+focus_neighbor_top = NodePath("../../../../HBoxContainer2/Select2-2/BossFace/StageButton2-2")
+focus_neighbor_right = NodePath("../../../Select3-3/BossFace/StageButton3-3")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
+stretch_mode = 0
+
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-2"]
+layout_mode = 2
+text = "   CAT MAN"
+
+[node name="Select3-3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BossFace" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_0ciqv")
+
+[node name="StageButton3-3" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-3/BossFace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../../../Select3-2/BossFace/StageButton3-2")
+focus_neighbor_top = NodePath("../../../../HBoxContainer2/Select2-3/BossFace/StageButton2-3")
+mouse_filter = 2
+texture_normal = ExtResource("3_0cf65")
+texture_focused = SubResource("AnimatedTexture_vxona")
+stretch_mode = 0
+
+[node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/Select3-3"]
+layout_mode = 2
+text = "   ??? MAN"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Select1-1/BossFace/StageButton1-1" to="MarginContainer" method="_on_stage_button_11_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Select1-2/BossFace/StageButton1-2" to="MarginContainer" method="_on_stage_button_12_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Select1-3/BossFace/StageButton1-3" to="MarginContainer" method="_on_stage_button_13_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/Select3-2/BossFace/StageButton3-2" to="MarginContainer" method="_on_stage_button_32_pressed"]
