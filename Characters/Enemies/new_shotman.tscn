@@ -1,0 +1,111 @@
+[gd_scene load_steps=16 format=3 uid="uid://dbk73winjc33p"]
+
+[ext_resource type="Texture2D" uid="uid://c2jnoc3v4jyif" path="res://Art/Sprites/Enemies/New Shotman.png" id="1_keu2p"]
+[ext_resource type="Script" path="res://Scripts/new_shotman.gd" id="1_mx88c"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_gn07k"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="3_bbb2n"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="4_joulx"]
+[ext_resource type="PackedScene" uid="uid://cyklypgvgjjx5" path="res://Characters/Components/item_drop_component.tscn" id="5_hbum3"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="6_uxxqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h652"]
+size = Vector2(20, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bglbv"]
+atlas = ExtResource("1_keu2p")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jxk6"]
+atlas = ExtResource("1_keu2p")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jjh0"]
+atlas = ExtResource("1_keu2p")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c0po"]
+atlas = ExtResource("1_keu2p")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2aj8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bglbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jxk6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jjh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2c0po")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdrct"]
+size = Vector2(22, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hsb2"]
+size = Vector2(22, 19)
+
+[node name="NewShotman" type="CharacterBody2D"]
+position = Vector2(0, -10)
+collision_layer = 4
+script = ExtResource("1_mx88c")
+shot_velocity_y = -350.0
+acceleration_y = 850.0
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7h652")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_2aj8q")
+animation = &"idle"
+
+[node name="Health" parent="." instance=ExtResource("2_gn07k")]
+position = Vector2(0, 10)
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_bbb2n")]
+position = Vector2(0, 10)
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_sdrct")
+
+[node name="ContactBox" parent="." instance=ExtResource("4_joulx")]
+position = Vector2(0, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_1hsb2")
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("5_hbum3")]
+parent = NodePath("..")
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("6_uxxqn")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="ShotPoint" type="Node2D" parent="."]
+position = Vector2(0, -10)
+
+[node name="ShotWaitTimer" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
+
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://mano1rx757qx"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_shot.gd" id="1_yvoqt"]
+[ext_resource type="Texture2D" uid="uid://dhl3ccbu2gjkg" path="res://Art/Sprites/Weapons/Enemy Shot.png" id="2_d8pax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w2la7"]
+radius = 4.0
+
+[node name="EnemyShot" type="Area2D" node_paths=PackedStringArray("visible_on_screen_notifier")]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_yvoqt")
+DAMAGE = 3
+visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_d8pax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w2la7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

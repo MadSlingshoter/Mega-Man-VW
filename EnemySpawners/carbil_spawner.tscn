@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk81fb1g6w0ve"]
+
+[ext_resource type="Script" path="res://Scripts/carbil_spawner.gd" id="1_mbd08"]
+[ext_resource type="PackedScene" uid="uid://dfs0n0grwd7o7" path="res://Characters/Enemies/carbil.tscn" id="2_msgeh"]
+
+[node name="CarbilSpawner" type="Area2D"]
+collision_layer = 1024
+collision_mask = 2
+script = ExtResource("1_mbd08")
+carbil = ExtResource("2_msgeh")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

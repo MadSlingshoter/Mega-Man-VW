@@ -23,8 +23,5 @@ func _ready():
 
 
 func _on_pits_area_entered(area):
-	if area is Hurtbox and area.get_parent() is Player:
-		var attack = Attack.new()
-		attack.damage = 28
-		attack.attack_type = Global.Weapon.hazard
-		area.pierce_damage(attack)
+	if area is DeathAreaDetector:
+		area.insta_kill()

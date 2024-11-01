@@ -109,7 +109,7 @@ stretch_mode = 0
 
 [node name="BossName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Select1-2"]
 layout_mode = 2
-text = "   ??? MAN"
+text = "   CAR MAN"
 
 [node name="Select1-3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -332,4 +332,5 @@ text = "   ??? MAN"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Select1-1/BossFace/StageButton1-1" to="MarginContainer" method="_on_stage_button_11_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Select1-2/BossFace/StageButton1-2" to="MarginContainer" method="_on_stage_button_12_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Select1-3/BossFace/StageButton1-3" to="MarginContainer" method="_on_stage_button_13_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Select2-2/BossFace/StageButton2-2" to="MarginContainer" method="_on_stage_button_22_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/Select3-2/BossFace/StageButton3-2" to="MarginContainer" method="_on_stage_button_32_pressed"]

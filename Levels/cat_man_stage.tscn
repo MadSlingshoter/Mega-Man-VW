@@ -432,7 +432,7 @@ position = Vector2(0, 160)
 
 [node name="Pits" type="Area2D" parent="."]
 collision_layer = 64
-collision_mask = 2
+collision_mask = 512
 
 [node name="Pits5" type="CollisionShape2D" parent="Pits"]
 position = Vector2(1452, 15)
