@@ -33,7 +33,7 @@ func damage(value) -> bool:
 				invul_timer.start()
 			if curr_health <= 0:
 				emit_signal("killed")
-				return true
+			return true
 	return false
 
 #ignores invulnerability

@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://v3fgnf4qa6ru"]
+[gd_scene load_steps=25 format=3 uid="uid://v3fgnf4qa6ru"]
 
 [ext_resource type="Texture2D" uid="uid://csdqm0w0r1yx6" path="res://Art/Sprites/Enemies/Metall.png" id="1_2145r"]
 [ext_resource type="Script" path="res://Scripts/metall.gd" id="1_th4x6"]
 [ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_00csl"]
+[ext_resource type="PackedScene" uid="uid://mano1rx757qx" path="res://Weapons/EnemyWeapons/enemy_shot.tscn" id="2_2sc1m"]
 [ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="3_r1fyw"]
 [ext_resource type="PackedScene" uid="uid://n4ylhrx2ol6" path="res://Characters/Components/shield_box.tscn" id="4_gdrmv"]
 [ext_resource type="PackedScene" uid="uid://dfp61yfhtjdjn" path="res://Characters/Components/player_detector.tscn" id="5_ltp56"]
@@ -100,6 +101,7 @@ position = Vector2(0, -8)
 collision_layer = 4
 script = ExtResource("1_th4x6")
 SPEED = 76.0
+enemy_shot = ExtResource("2_2sc1m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ia1up")

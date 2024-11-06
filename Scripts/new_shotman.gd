@@ -6,12 +6,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction = 1
 @export var shot_velocity_y : float
 @export var acceleration_y : float
+@export var lobbed_shot : Resource
 
 enum State {idle, shoot}
 var state = State.idle
 var distance_to_player: Vector2
-
-@onready var lobbed_shot = preload("res://Weapons/EnemyWeapons/lobbed_shot.tscn")
 
 @onready var animations = $Animations
 @onready var health = $Health

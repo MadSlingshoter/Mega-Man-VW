@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var SPEED: float
+@export var enemy_shot : Resource
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -9,8 +10,6 @@ var direction = 1
 
 enum State {hiding, emerging, moving}
 var state = State.hiding
-
-@onready var enemy_shot = preload("res://Weapons/EnemyWeapons/enemy_shot.tscn")
 
 @onready var animations = $Animations
 @onready var health = $Health

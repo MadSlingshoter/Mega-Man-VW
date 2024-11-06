@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ds4mijl1lum1g" path="res://Art/Tilesets/mm2woodtilesetgr6.png" id="1_hdvcl"]
 [ext_resource type="PackedScene" uid="uid://cplpdngl3vu5k" path="res://Levels/room_1.tscn" id="3_430bg"]
 [ext_resource type="PackedScene" uid="uid://bp063vodx6yll" path="res://Levels/boss_gate.tscn" id="4_hdxlw"]
-[ext_resource type="PackedScene" uid="uid://dfs0n0grwd7o7" path="res://Characters/Enemies/carbil.tscn" id="5_qumfy"]
+[ext_resource type="PackedScene" uid="uid://dtkdxhk50ox41" path="res://Characters/Enemies/rembakun.tscn" id="5_7aw5j"]
 [ext_resource type="PackedScene" uid="uid://rlu4q3mbcp8g" path="res://Items/item_pickup.tscn" id="6_eebwq"]
 [ext_resource type="PackedScene" uid="uid://clokuk5f0q737" path="res://EnemySpawners/enemy_spawner.tscn" id="6_veuc7"]
 [ext_resource type="PackedScene" uid="uid://6hrtiem8jlg0" path="res://Levels/ladder_area.tscn" id="7_u3xvj"]
@@ -208,8 +208,8 @@ position = Vector2(240, 120)
 shape = SubResource("RectangleShape2D_tjtxx")
 
 [node name="EnemySpawner" parent="Rooms/Room1" instance=ExtResource("6_veuc7")]
-position = Vector2(402, 192)
-enemy = ExtResource("5_qumfy")
+position = Vector2(371, 112)
+enemy = ExtResource("5_7aw5j")
 
 [node name="ItemPickup" parent="Rooms/Room1" instance=ExtResource("6_eebwq")]
 position = Vector2(105, 152)

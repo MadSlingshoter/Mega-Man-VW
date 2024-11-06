@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://o0d04ch38flr"]
+[gd_scene load_steps=36 format=3 uid="uid://o0d04ch38flr"]
 
 [ext_resource type="Script" path="res://Scripts/car_man_stage.gd" id="1_3g52c"]
 [ext_resource type="Texture2D" uid="uid://dw8to6qhsdbfo" path="res://Art/Tilesets/CarManBg.png" id="1_4nmbc"]
@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://6hrtiem8jlg0" path="res://Levels/ladder_area.tscn" id="5_lwt6w"]
 [ext_resource type="PackedScene" uid="uid://w5caejcxt3xh" path="res://Levels/boss_room.tscn" id="5_n5myr"]
 [ext_resource type="PackedScene" uid="uid://dk81fb1g6w0ve" path="res://EnemySpawners/carbil_spawner.tscn" id="5_pencc"]
+[ext_resource type="PackedScene" uid="uid://clokuk5f0q737" path="res://EnemySpawners/enemy_spawner.tscn" id="6_8ho8b"]
+[ext_resource type="PackedScene" uid="uid://v3fgnf4qa6ru" path="res://Characters/Enemies/metall.tscn" id="7_0i2yk"]
+[ext_resource type="PackedScene" uid="uid://dbk73winjc33p" path="res://Characters/Enemies/new_shotman.tscn" id="7_geudj"]
+[ext_resource type="PackedScene" uid="uid://dtkdxhk50ox41" path="res://Characters/Enemies/rembakun.tscn" id="8_6qvyp"]
+[ext_resource type="PackedScene" uid="uid://rlu4q3mbcp8g" path="res://Items/item_pickup.tscn" id="10_h6y4e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4lig"]
 texture = ExtResource("1_4nmbc")
@@ -438,6 +443,46 @@ position = Vector2(292, 120)
 shape = SubResource("RectangleShape2D_a615h")
 debug_color = Color(0.843137, 0.380392, 0, 0.419608)
 
+[node name="NewShotMan1" parent="Rooms/Room1" instance=ExtResource("6_8ho8b")]
+position = Vector2(784, 144)
+enemy = ExtResource("7_geudj")
+
+[node name="NewShotMan2" parent="Rooms/Room1" instance=ExtResource("6_8ho8b")]
+position = Vector2(1543, 112)
+enemy = ExtResource("7_geudj")
+
+[node name="Metall1" parent="Rooms/Room1" instance=ExtResource("6_8ho8b")]
+position = Vector2(1849, 112)
+enemy = ExtResource("7_0i2yk")
+
+[node name="Rembakun1" parent="Rooms/Room1" instance=ExtResource("6_8ho8b")]
+position = Vector2(3020, 95)
+enemy = ExtResource("8_6qvyp")
+
+[node name="ExtraLife1" parent="Rooms/Room1" instance=ExtResource("10_h6y4e")]
+position = Vector2(2072, 104)
+type = 5
+
+[node name="SmallHealth1" parent="Rooms/Room1" instance=ExtResource("10_h6y4e")]
+position = Vector2(2264, 140)
+type = 1
+
+[node name="SmallEnergy1" parent="Rooms/Room1" instance=ExtResource("10_h6y4e")]
+position = Vector2(2288, 140)
+type = 3
+
+[node name="SmallHealth2" parent="Rooms/Room1" instance=ExtResource("10_h6y4e")]
+position = Vector2(2312, 140)
+type = 1
+
+[node name="SmallEnergy2" parent="Rooms/Room1" instance=ExtResource("10_h6y4e")]
+position = Vector2(2336, 140)
+type = 3
+
+[node name="SmallHealth3" parent="Rooms/Room1" instance=ExtResource("10_h6y4e")]
+position = Vector2(2360, 140)
+type = 1
+
 [node name="Room2" parent="Rooms" node_paths=PackedStringArray("enter_walls") instance=ExtResource("4_wu43m")]
 position = Vector2(3216, 0)
 enter_walls = NodePath("EnterWalls")
@@ -490,6 +535,58 @@ position = Vector2(118, 0)
 position = Vector2(1484.5, 120)
 shape = SubResource("RectangleShape2D_j7phw")
 debug_color = Color(0.815686, 0.407843, 0, 0.419608)
+
+[node name="Metall1" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(521, 192)
+enemy = ExtResource("7_0i2yk")
+
+[node name="NewShotMan1" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(656, 191)
+enemy = ExtResource("7_geudj")
+
+[node name="Rembakun1" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(842, 57)
+enemy = ExtResource("8_6qvyp")
+
+[node name="Metall2" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(992, 112)
+enemy = ExtResource("7_0i2yk")
+
+[node name="NewShotMan2" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(1306, 96)
+enemy = ExtResource("7_geudj")
+
+[node name="Metall3" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(1830, 96)
+enemy = ExtResource("7_0i2yk")
+
+[node name="NewShotMan3" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(2128, 128)
+enemy = ExtResource("7_geudj")
+
+[node name="Rembakun2" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(2616, 135)
+enemy = ExtResource("8_6qvyp")
+
+[node name="Rembakun3" parent="Rooms/Room2" instance=ExtResource("6_8ho8b")]
+position = Vector2(3036, 107)
+enemy = ExtResource("8_6qvyp")
+
+[node name="BigHealth1" parent="Rooms/Room2" instance=ExtResource("10_h6y4e")]
+position = Vector2(40, 184)
+type = 2
+
+[node name="ExtraLife1" parent="Rooms/Room2" instance=ExtResource("10_h6y4e")]
+position = Vector2(784, 184)
+type = 5
+
+[node name="BigEnergy1" parent="Rooms/Room2" instance=ExtResource("10_h6y4e")]
+position = Vector2(1349, 88)
+type = 4
+
+[node name="BigHealth2" parent="Rooms/Room2" instance=ExtResource("10_h6y4e")]
+position = Vector2(1368, 88)
+type = 2
 
 [node name="Room3" parent="Rooms" node_paths=PackedStringArray("boss_gate") instance=ExtResource("4_wu43m")]
 position = Vector2(6576, 0)

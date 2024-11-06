@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwsn2obej83xv"]
+
+[ext_resource type="Script" path="res://Scripts/rembakun_bomb.gd" id="1_08cxo"]
+[ext_resource type="Texture2D" uid="uid://q63gq8081uuf" path="res://Art/Sprites/Weapons/Rembakun Bomb.png" id="2_1ucjc"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="3_a4sy4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ocad1"]
+radius = 3.0
+height = 12.0
+
+[node name="RembakunBomb" type="Area2D" node_paths=PackedStringArray("visible_on_screen_notifier")]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_08cxo")
+DAMAGE = 3
+visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1ucjc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ocad1")
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("3_a4sy4")]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -4)
+target_position = Vector2(0, 8)
+hit_from_inside = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

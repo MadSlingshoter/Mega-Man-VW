@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbk73winjc33p"]
+[gd_scene load_steps=17 format=3 uid="uid://dbk73winjc33p"]
 
 [ext_resource type="Texture2D" uid="uid://c2jnoc3v4jyif" path="res://Art/Sprites/Enemies/New Shotman.png" id="1_keu2p"]
 [ext_resource type="Script" path="res://Scripts/new_shotman.gd" id="1_mx88c"]
+[ext_resource type="PackedScene" uid="uid://bkd37t2f8vumf" path="res://Weapons/EnemyWeapons/lobbed_shot.tscn" id="2_3rpac"]
 [ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_gn07k"]
 [ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="3_bbb2n"]
 [ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="4_joulx"]
@@ -64,6 +65,7 @@ collision_layer = 4
 script = ExtResource("1_mx88c")
 shot_velocity_y = -350.0
 acceleration_y = 850.0
+lobbed_shot = ExtResource("2_3rpac")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -104,7 +106,7 @@ position = Vector2(0, -2)
 position = Vector2(0, -10)
 
 [node name="ShotWaitTimer" type="Timer" parent="."]
-wait_time = 1.8
+wait_time = 1.3
 one_shot = true
 
 [connection signal="killed" from="Health" to="." method="_on_health_killed"]
