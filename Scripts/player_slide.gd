@@ -15,6 +15,8 @@ func enter() -> void:
 	parent.collision_box_slide.set_deferred("disabled", false)
 	parent.hurtbox.set_deferred("disabled", true)
 	parent.hurtbox_slide.set_deferred("disabled", false)
+	parent.death_area_box.set_deferred("disabled", true)
+	parent.death_area_box_slide.set_deferred("disabled", false)
 	# can't use this as triggers transition code
 #	parent.room_detect_box.set_deferred("disabled", true)
 #	parent.room_detect_box_slide.set_deferred("disabled", false)
@@ -29,6 +31,8 @@ func exit() -> void:
 	parent.collision_box_slide.set_deferred("disabled", true)
 	parent.hurtbox.set_deferred("disabled", false)
 	parent.hurtbox_slide.set_deferred("disabled", true)
+	parent.death_area_box.set_deferred("disabled", false)
+	parent.death_area_box_slide.set_deferred("disabled", true)
 #	parent.room_detect_box.set_deferred("disabled", false)
 #	parent.room_detect_box_slide.set_deferred("disabled", true)
 	parent.pickup_detect_box.set_deferred("disabled", false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cds61asgr1vhl"]
+[gd_scene load_steps=69 format=3 uid="uid://cds61asgr1vhl"]
 
 [ext_resource type="Texture2D" uid="uid://c3vb2hu658gav" path="res://Art/Sprites/Mega Man/8bitMM_Idle.png" id="1_11kqb"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_vtugr"]
@@ -16,9 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="10_4yjsd"]
 [ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="10_a65bd"]
 [ext_resource type="PackedScene" uid="uid://cq2urn2ktk5c5" path="res://Menus/pause_menu.tscn" id="10_kp53s"]
+[ext_resource type="Script" path="res://Scripts/DeathAreaDetector.gd" id="13_0ai8q"]
 [ext_resource type="PackedScene" uid="uid://bhnw3s4h8h0yc" path="res://States/player_move.tscn" id="13_lmxds"]
 [ext_resource type="PackedScene" uid="uid://b8m5mvq8oe0fo" path="res://States/player_idle.tscn" id="14_5jrtt"]
 [ext_resource type="PackedScene" uid="uid://4jfqdfp0tvxe" path="res://States/player_fall.tscn" id="14_87mn2"]
+[ext_resource type="Script" path="res://Scripts/RoomDetector.gd" id="14_fxkgw"]
 [ext_resource type="PackedScene" uid="uid://2f3h21trd1uq" path="res://States/player_hurt.tscn" id="15_8f3qy"]
 [ext_resource type="PackedScene" uid="uid://bxnykrln47o2n" path="res://States/player_jump.tscn" id="15_oaqm1"]
 [ext_resource type="PackedScene" uid="uid://dowrqtx2gencd" path="res://States/player_slide.tscn" id="17_3t4h7"]
@@ -265,6 +267,12 @@ size = Vector2(20, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb0fo"]
 size = Vector2(24, 19)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wqac"]
+size = Vector2(16, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yw6y"]
+size = Vector2(24, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aloiu"]
 size = Vector2(20, 24)
 
@@ -338,10 +346,25 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_pb0fo")
 disabled = true
 
+[node name="DeathAreaDetector" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 512
+collision_mask = 64
+script = ExtResource("13_0ai8q")
+health = NodePath("../Health")
+
+[node name="DeathAreaBox" type="CollisionShape2D" parent="DeathAreaDetector"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_2wqac")
+
+[node name="DeathAreaBoxSlide" type="CollisionShape2D" parent="DeathAreaDetector"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_7yw6y")
+
 [node name="RoomDetector" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 32
 input_pickable = false
+script = ExtResource("14_fxkgw")
 
 [node name="DetectorBox" type="CollisionShape2D" parent="RoomDetector"]
 position = Vector2(0, -2)

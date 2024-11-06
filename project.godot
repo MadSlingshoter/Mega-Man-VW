@@ -111,6 +111,7 @@ pause={
 2d_physics/layer_7="death_planes"
 2d_physics/layer_8="pick_ups"
 2d_physics/layer_9="ladder"
+2d_physics/layer_10="player_death_area_detector"
 
 [physics]
 

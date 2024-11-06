@@ -1,0 +1,192 @@
+[gd_scene load_steps=25 format=3 uid="uid://v3fgnf4qa6ru"]
+
+[ext_resource type="Texture2D" uid="uid://csdqm0w0r1yx6" path="res://Art/Sprites/Enemies/Metall.png" id="1_2145r"]
+[ext_resource type="Script" path="res://Scripts/metall.gd" id="1_th4x6"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="2_00csl"]
+[ext_resource type="PackedScene" uid="uid://mano1rx757qx" path="res://Weapons/EnemyWeapons/enemy_shot.tscn" id="2_2sc1m"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="3_r1fyw"]
+[ext_resource type="PackedScene" uid="uid://n4ylhrx2ol6" path="res://Characters/Components/shield_box.tscn" id="4_gdrmv"]
+[ext_resource type="PackedScene" uid="uid://dfp61yfhtjdjn" path="res://Characters/Components/player_detector.tscn" id="5_ltp56"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="6_7lfon"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="6_uippk"]
+[ext_resource type="PackedScene" uid="uid://cyklypgvgjjx5" path="res://Characters/Components/item_drop_component.tscn" id="7_04py0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia1up"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oko5i"]
+atlas = ExtResource("1_2145r")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h6do"]
+atlas = ExtResource("1_2145r")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uib81"]
+atlas = ExtResource("1_2145r")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8tjc"]
+atlas = ExtResource("1_2145r")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yw6j"]
+atlas = ExtResource("1_2145r")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6ufp"]
+atlas = ExtResource("1_2145r")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akepd"]
+atlas = ExtResource("1_2145r")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lrdgu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oko5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h6do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uib81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8tjc")
+}],
+"loop": false,
+"name": &"emerge",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yw6j")
+}],
+"loop": true,
+"name": &"hiding",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6ufp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akepd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeiib"]
+size = Vector2(16, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r44uy"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6b2v"]
+size = Vector2(18, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axrao"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruw3s"]
+size = Vector2(134, 63)
+
+[node name="Metall" type="CharacterBody2D"]
+position = Vector2(0, -8)
+collision_layer = 4
+script = ExtResource("1_th4x6")
+SPEED = 76.0
+enemy_shot = ExtResource("2_2sc1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ia1up")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_lrdgu")
+animation = &"emerge"
+frame = 3
+frame_progress = 1.0
+
+[node name="Health" parent="." instance=ExtResource("2_00csl")]
+position = Vector2(0, 8)
+MAX_HEALTH = 1
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_r1fyw")]
+position = Vector2(0, 8)
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_eeiib")
+disabled = true
+
+[node name="ShieldBox" parent="." instance=ExtResource("4_gdrmv")]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldBox"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_r44uy")
+
+[node name="ContactBox" parent="." instance=ExtResource("6_uippk")]
+position = Vector2(0, 8)
+
+[node name="ContactShapeHiding" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_b6b2v")
+
+[node name="ContactShapeEmerged" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_axrao")
+disabled = true
+
+[node name="PlayerDetector" parent="." instance=ExtResource("5_ltp56")]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_ruw3s")
+debug_color = Color(0.305882, 0.627451, 0, 0.419608)
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("6_7lfon")]
+position = Vector2(0, -1)
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("7_04py0")]
+parent = NodePath("..")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="ShotPoint" type="Node2D" parent="."]
+position = Vector2(2, 4)
+
+[node name="ShootTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="PostShootTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.4
+one_shot = true
+
+[node name="WalkTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.2
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.8
+one_shot = true
+
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="PostShootTimer" to="." method="_on_post_shoot_timer_timeout"]
+[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

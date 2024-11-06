@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8tqk6cbbjj7"]
+[gd_scene load_steps=18 format=3 uid="uid://b8tqk6cbbjj7"]
 
 [ext_resource type="Script" path="res://Scripts/audio_manager.gd" id="1_xjmc6"]
 [ext_resource type="AudioStream" uid="uid://cruap36wbus5u" path="res://Sounds/Hit.wav" id="2_dpuvo"]
@@ -7,10 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://bw158pairolfc" path="res://Sounds/Death.wav" id="3_wfj3t"]
 [ext_resource type="AudioStream" uid="uid://cf1cncys0r7yw" path="res://Sounds/Enemy Hit.wav" id="4_lg26p"]
 [ext_resource type="AudioStream" uid="uid://dnpluyd3om3m6" path="res://Sounds/Extra Life.wav" id="5_tl3rp"]
+[ext_resource type="AudioStream" uid="uid://tw1xvdvbl0c5" path="res://Sounds/Enemy Shoot.wav" id="5_ynk4q"]
 [ext_resource type="AudioStream" uid="uid://dx5rqhjig6t53" path="res://Sounds/Fire.wav" id="6_efhav"]
 [ext_resource type="AudioStream" uid="uid://bfgjtcd5t3t6o" path="res://Sounds/Gate.wav" id="7_88xw1"]
 [ext_resource type="AudioStream" uid="uid://d157s1y0av84d" path="res://Sounds/Landing.wav" id="8_y4jef"]
 [ext_resource type="AudioStream" uid="uid://dd3fbybffnowi" path="res://Sounds/Menu.wav" id="9_f671a"]
+[ext_resource type="AudioStream" uid="uid://8jha7e4hdalt" path="res://Sounds/Honk.wav" id="9_sv805"]
 [ext_resource type="AudioStream" uid="uid://jam1e3leocge" path="res://Sounds/Pause.wav" id="12_bjb6m"]
 [ext_resource type="AudioStream" uid="uid://8mligusyr34c" path="res://Sounds/Recover.wav" id="13_3wnqb"]
 [ext_resource type="AudioStream" uid="uid://b42xp4ls5nb42" path="res://Sounds/11 - Dink.wav" id="14_km18r"]
@@ -37,6 +39,10 @@ max_polyphony = 2
 stream = ExtResource("4_lg26p")
 max_polyphony = 6
 
+[node name="EnemyShootSound" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("5_ynk4q")
+max_polyphony = 3
+
 [node name="ExtraLifeSound" type="AudioStreamPlayer" parent="SoundPlayers"]
 stream = ExtResource("5_tl3rp")
 
@@ -46,6 +52,11 @@ max_polyphony = 4
 
 [node name="GateSound" type="AudioStreamPlayer" parent="SoundPlayers"]
 stream = ExtResource("7_88xw1")
+
+[node name="HonkSound" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("9_sv805")
+volume_db = -10.0
+pitch_scale = 1.8
 
 [node name="LandingSound" type="AudioStreamPlayer" parent="SoundPlayers"]
 stream = ExtResource("8_y4jef")

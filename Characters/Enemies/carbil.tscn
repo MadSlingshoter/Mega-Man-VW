@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://dfs0n0grwd7o7"]
+
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="1_7awif"]
+[ext_resource type="Texture2D" uid="uid://bkia8pht6hg3o" path="res://Art/Sprites/Enemies/Carbil.png" id="1_a6smj"]
+[ext_resource type="Script" path="res://Scripts/carbil.gd" id="1_j0gdl"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="2_4is0n"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="3_8bo0f"]
+[ext_resource type="PackedScene" uid="uid://cyklypgvgjjx5" path="res://Characters/Components/item_drop_component.tscn" id="4_855yh"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="5_wegw7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l863n"]
+atlas = ExtResource("1_a6smj")
+region = Rect2(0, 0, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c33g"]
+atlas = ExtResource("1_a6smj")
+region = Rect2(42, 0, 42, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwhn0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l863n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c33g")
+}],
+"loop": true,
+"name": &"drive",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fuu8"]
+size = Vector2(37, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0ha5"]
+size = Vector2(28, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jplvh"]
+size = Vector2(14, 19)
+
+[node name="Carbil" type="CharacterBody2D"]
+position = Vector2(0, -16)
+collision_layer = 4
+script = ExtResource("1_j0gdl")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bwhn0")
+animation = &"drive"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_2fuu8")
+
+[node name="Health" parent="." instance=ExtResource("1_7awif")]
+MAX_HEALTH = 5
+
+[node name="ContactBox" parent="." instance=ExtResource("2_4is0n")]
+CONTACT_DAMAGE = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(7, 1)
+shape = SubResource("RectangleShape2D_b0ha5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(-14, 6.5)
+shape = SubResource("RectangleShape2D_jplvh")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_8bo0f")]
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(7, 1)
+shape = SubResource("RectangleShape2D_b0ha5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-14, 6.5)
+shape = SubResource("RectangleShape2D_jplvh")
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_855yh")]
+parent = NodePath("..")
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("5_wegw7")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-22, 0)
+
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

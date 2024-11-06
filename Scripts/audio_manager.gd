@@ -5,9 +5,11 @@ extends Node
 @onready var absorb_sound = $SoundPlayers/AbsorbSound
 @onready var death_sound = $SoundPlayers/DeathSound
 @onready var enemy_hurt_sound = $SoundPlayers/EnemyHurtSound
+@onready var enemy_shoot_sound = $SoundPlayers/EnemyShootSound
 @onready var extra_life_sound = $SoundPlayers/ExtraLifeSound
 @onready var fire_sound = $SoundPlayers/FireSound
 @onready var gate_sound = $SoundPlayers/GateSound
+@onready var honk_sound = $SoundPlayers/HonkSound
 @onready var landing_sound = $SoundPlayers/LandingSound
 @onready var menu_sound = $SoundPlayers/MenuSound
 @onready var player_hurt_sound = $SoundPlayers/PlayerHurtSound
@@ -33,6 +35,9 @@ func play_death_sound():
 func play_enemy_hurt_sound():
 	enemy_hurt_sound.play()
 
+func play_enemy_shoot_sound():
+	enemy_shoot_sound.play()
+
 func play_extra_life_sound():
 	extra_life_sound.play()
 
@@ -41,6 +46,9 @@ func play_fire_sound():
 
 func play_gate_sound():
 	gate_sound.play()
+
+func play_honk_sound():
+	honk_sound.play()
 
 func play_landing_sound():
 	landing_sound.play()

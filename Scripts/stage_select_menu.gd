@@ -14,13 +14,19 @@ func _on_stage_button_11_pressed():
 	Global.goto_scene(Global.Level.bowser_man)
 
 func _on_stage_button_12_pressed():
-	Global.goto_scene(Global.Level.test2)
+	Global.goto_scene(Global.Level.car_man)
 
 func _on_stage_button_13_pressed():
 	Global.goto_scene(Global.Level.test_boss)
 
+func _on_stage_button_22_pressed():
+	Global.goto_scene(Global.Level.test2)
+
 func _on_stage_button_32_pressed():
 	Global.goto_scene(Global.Level.cat_man)
+
+
+
 
 
 

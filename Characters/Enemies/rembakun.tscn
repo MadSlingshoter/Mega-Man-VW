@@ -1,0 +1,174 @@
+[gd_scene load_steps=25 format=3 uid="uid://dtkdxhk50ox41"]
+
+[ext_resource type="Script" path="res://Scripts/rembakun.gd" id="1_5fv0q"]
+[ext_resource type="Texture2D" uid="uid://bth77mtn3lthd" path="res://Art/Sprites/Enemies/Rembakun top.png" id="1_ngntm"]
+[ext_resource type="PackedScene" uid="uid://bwsn2obej83xv" path="res://Weapons/EnemyWeapons/rembakun_bomb.tscn" id="2_nb8yv"]
+[ext_resource type="Texture2D" uid="uid://b0mftdadjfgyi" path="res://Art/Sprites/Enemies/Rembakun bottom.png" id="2_w10i7"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="3_tnvbk"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="4_3e3j8"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="5_uwgde"]
+[ext_resource type="PackedScene" uid="uid://defm1rpthsjje" path="res://Characters/Components/enemy_death_component.tscn" id="6_f5sm3"]
+[ext_resource type="PackedScene" uid="uid://cyklypgvgjjx5" path="res://Characters/Components/item_drop_component.tscn" id="7_gpm2x"]
+[ext_resource type="PackedScene" uid="uid://dfp61yfhtjdjn" path="res://Characters/Components/player_detector.tscn" id="9_q2r2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvb1r"]
+atlas = ExtResource("1_ngntm")
+region = Rect2(0, 0, 24, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvw8s"]
+atlas = ExtResource("1_ngntm")
+region = Rect2(24, 0, 24, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_asswy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvb1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvw8s")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6vmj"]
+atlas = ExtResource("2_w10i7")
+region = Rect2(96, 0, 24, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma8tk"]
+atlas = ExtResource("2_w10i7")
+region = Rect2(120, 0, 24, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tcsb"]
+atlas = ExtResource("2_w10i7")
+region = Rect2(48, 0, 24, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmmin"]
+atlas = ExtResource("2_w10i7")
+region = Rect2(72, 0, 24, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gslwq"]
+atlas = ExtResource("2_w10i7")
+region = Rect2(24, 0, 24, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b42f"]
+atlas = ExtResource("2_w10i7")
+region = Rect2(144, 0, 24, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygyuh"]
+atlas = ExtResource("2_w10i7")
+region = Rect2(0, 0, 24, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m52bw"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_x6vmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma8tk")
+}],
+"loop": false,
+"name": &"drop1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_2tcsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmmin")
+}],
+"loop": false,
+"name": &"drop2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gslwq")
+}],
+"loop": false,
+"name": &"drop3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b42f")
+}],
+"loop": false,
+"name": &"hold0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygyuh")
+}],
+"loop": false,
+"name": &"hold3",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hk2u"]
+size = Vector2(14, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fx27q"]
+size = Vector2(16, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7mu3"]
+size = Vector2(152, 130)
+
+[node name="Rembakun" type="CharacterBody2D"]
+position = Vector2(0, -15)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_5fv0q")
+SPEED = 69.0
+bomb = ExtResource("2_nb8yv")
+
+[node name="AnimationsTop" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_asswy")
+animation = &"fly"
+
+[node name="AnimationsBottom" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m52bw")
+animation = &"drop1"
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_7hk2u")
+
+[node name="Health" parent="." instance=ExtResource("3_tnvbk")]
+MAX_HEALTH = 2
+
+[node name="ContactBox" parent="." instance=ExtResource("4_3e3j8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+shape = SubResource("RectangleShape2D_fx27q")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_uwgde")]
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_fx27q")
+
+[node name="EnemyDeathComponent" parent="." instance=ExtResource("6_f5sm3")]
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("7_gpm2x")]
+parent = NodePath("..")
+
+[node name="DropPoint" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="PlayerDetector" parent="." instance=ExtResource("9_q2r2v")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, 55)
+shape = SubResource("RectangleShape2D_r7mu3")
+debug_color = Color(0.709804, 0.74902, 0, 0.419608)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

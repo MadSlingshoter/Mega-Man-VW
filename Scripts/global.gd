@@ -50,6 +50,8 @@ func goto_scene(scene_name : Level):
 			path = "res://Menus/continue_menu.tscn"
 		Level.bowser_man:
 			path = "res://Levels/bowser_man_stage.tscn"
+		Level.car_man:
+			path = "res://Levels/car_man_stage.tscn"
 		Level.cat_man:
 			path = "res://Levels/cat_man_stage.tscn"
 		Level.test2:

@@ -1759,7 +1759,7 @@ boss = ExtResource("7_47m3l")
 
 [node name="Pits" type="Area2D" parent="."]
 collision_layer = 64
-collision_mask = 2
+collision_mask = 512
 
 [node name="Pit1-1" type="CollisionShape2D" parent="Pits"]
 position = Vector2(1792, 15)
