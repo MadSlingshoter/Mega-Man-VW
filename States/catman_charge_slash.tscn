@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bubqurpemgk0x"]
+
+[ext_resource type="Script" path="res://Scripts/catman_charge_slash.gd" id="1_fujjl"]
+
+[node name="CatmanChargeSlash" type="Node"]
+script = ExtResource("1_fujjl")
+
+[node name="ChargeTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.8
+one_shot = true

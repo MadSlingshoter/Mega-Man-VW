@@ -270,6 +270,8 @@ MAX_HEALTH = 28
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("5_beenu")]
 health = NodePath("../Health")
+bowser_fire_override = 1
+cat_scratch_override = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 1)
@@ -324,6 +326,7 @@ scale = Vector2(3, 3)
 transform = Transform2D(3, 0, 0, 3, 0, 0)
 
 [node name="BossHealthBar" parent="BarCanvasLayer" instance=ExtResource("16_mtgne")]
+visible = true
 offset_left = -713.667
 offset_top = -268.0
 offset_right = -657.667

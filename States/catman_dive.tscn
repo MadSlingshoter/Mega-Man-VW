@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://vvugkqgxqshy"]
+
+[ext_resource type="Script" path="res://Scripts/catman_dive.gd" id="1_0h1n1"]
+
+[node name="CatmanDive" type="Node"]
+script = ExtResource("1_0h1n1")
+move_speed = 120.0

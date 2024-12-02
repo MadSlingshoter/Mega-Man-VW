@@ -7,7 +7,7 @@ var curr_weapon: Global.Weapon
 var curr_weapon_state: WeaponState
 @export var mega_buster: WeaponState
 @export var bowser_fire: WeaponState
-
+@export var cat_scratch: WeaponState
 
 func init(parent: Player):
 	for child in get_children():
@@ -31,6 +31,9 @@ func switch_weapons(new_weapon: Global.Weapon):
 		Global.Weapon.bowser_fire:
 			curr_weapon = Global.Weapon.bowser_fire
 			curr_weapon_state = bowser_fire
+		Global.Weapon.cat_scratch:
+			curr_weapon = Global.Weapon.cat_scratch
+			curr_weapon_state = cat_scratch
 		# rest of weapons
 	
 	emit_signal("energy_updated", curr_weapon_state.curr_energy)
@@ -41,6 +44,8 @@ func get_energies() -> Array[int]:
 	energies[0] = 28 # mega buster always full because not use
 	if Global.beaten_bowserman:
 		energies[1] = bowser_fire.curr_energy
+	if Global.beaten_catman:
+		energies[7] = cat_scratch.curr_energy
 	# if statements for rest of bosses
 	
 	return energies

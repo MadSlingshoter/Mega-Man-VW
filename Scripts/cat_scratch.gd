@@ -1,10 +1,6 @@
 extends Weapon
 
-@onready var collision_shape = $CollisionShape2D
-
-const SPEED = 160
 var time = 0.0
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -13,14 +9,14 @@ func _process(delta):
 		if !visible_on_screen_notifier.is_on_screen():
 			queue_free()
 	time += delta
-	
-	position.x += direction * SPEED * delta
 
 
 func _on_area_entered(area):
 	if area is ShieldBox:
 		AudioManager.play_relected_sound()
-		queue_free()
 	if area is Hurtbox:
-		if not area.damage(attack):
-			queue_free()
+		area.damage(attack)
+
+
+func _on_animations_animation_finished():
+	queue_free()

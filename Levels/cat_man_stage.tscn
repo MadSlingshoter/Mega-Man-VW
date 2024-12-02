@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cknov2sx0bndt"]
+[gd_scene load_steps=35 format=3 uid="uid://cknov2sx0bndt"]
 
 [ext_resource type="Script" path="res://Scripts/cat_man_stage.gd" id="1_kt5hn"]
 [ext_resource type="Texture2D" uid="uid://5qxme02u67wu" path="res://Art/Tilesets/CatManBg.png" id="2_51n3y"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://db88h6jaugam" path="res://Characters/Enemies/batton.tscn" id="8_uq5bg"]
 [ext_resource type="PackedScene" uid="uid://bw7tt1yf2judh" path="res://Characters/Enemies/sumatran.tscn" id="10_cnc2m"]
 [ext_resource type="PackedScene" uid="uid://rlu4q3mbcp8g" path="res://Items/item_pickup.tscn" id="11_6rrt0"]
+[ext_resource type="PackedScene" uid="uid://be5wmlaf3vxs1" path="res://EnemySpawners/boss_spawner.tscn" id="14_hkvml"]
+[ext_resource type="PackedScene" uid="uid://dhg2olx6853kw" path="res://Characters/Bosses/cat_man.tscn" id="15_3su0s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yjpau"]
 texture = ExtResource("2_51n3y")
@@ -419,8 +421,9 @@ shape = SubResource("RectangleShape2D_5slmv")
 [node name="BossGate" parent="Rooms/Room10" instance=ExtResource("5_xnc74")]
 position = Vector2(0, 160)
 
-[node name="BossRoom" parent="Rooms" node_paths=PackedStringArray("boss_gate") instance=ExtResource("5_spx2x")]
+[node name="BossRoom" parent="Rooms" node_paths=PackedStringArray("boss_spawner", "boss_gate") instance=ExtResource("5_spx2x")]
 position = Vector2(4512, 0)
+boss_spawner = NodePath("BossSpawner")
 boss_gate = NodePath("BossGate")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/BossRoom"]
@@ -429,6 +432,10 @@ shape = SubResource("RectangleShape2D_bv8wo")
 
 [node name="BossGate" parent="Rooms/BossRoom" instance=ExtResource("5_xnc74")]
 position = Vector2(0, 160)
+
+[node name="BossSpawner" parent="Rooms/BossRoom" instance=ExtResource("14_hkvml")]
+position = Vector2(206, 14)
+boss = ExtResource("15_3su0s")
 
 [node name="Pits" type="Area2D" parent="."]
 collision_layer = 64

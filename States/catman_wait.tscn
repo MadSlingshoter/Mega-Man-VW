@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhabfa8j4tqvh"]
+
+[ext_resource type="Script" path="res://Scripts/catman_wait.gd" id="1_eixlk"]
+
+[node name="CatmanWait" type="Node"]
+script = ExtResource("1_eixlk")
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true

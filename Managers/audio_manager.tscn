@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8tqk6cbbjj7"]
+[gd_scene load_steps=19 format=3 uid="uid://b8tqk6cbbjj7"]
 
 [ext_resource type="Script" path="res://Scripts/audio_manager.gd" id="1_xjmc6"]
 [ext_resource type="AudioStream" uid="uid://cruap36wbus5u" path="res://Sounds/Hit.wav" id="2_dpuvo"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://8mligusyr34c" path="res://Sounds/Recover.wav" id="13_3wnqb"]
 [ext_resource type="AudioStream" uid="uid://b42xp4ls5nb42" path="res://Sounds/11 - Dink.wav" id="14_km18r"]
 [ext_resource type="AudioStream" uid="uid://b54nlqfane1ky" path="res://Sounds/Thwomp.wav" id="15_bwb6j"]
+[ext_resource type="AudioStream" uid="uid://cyds2gffe4ot0" path="res://Sounds/Slash.wav" id="17_fiprc"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -80,6 +81,10 @@ stream = ExtResource("13_3wnqb")
 [node name="ReflectedSound" type="AudioStreamPlayer" parent="SoundPlayers"]
 stream = ExtResource("14_km18r")
 max_polyphony = 5
+
+[node name="SlashSound" type="AudioStreamPlayer" parent="SoundPlayers"]
+stream = ExtResource("17_fiprc")
+max_polyphony = 3
 
 [node name="StompSound" type="AudioStreamPlayer" parent="SoundPlayers"]
 stream = ExtResource("15_bwb6j")

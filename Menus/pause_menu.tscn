@@ -231,7 +231,7 @@ focus_neighbor_right = NodePath("../../../WeaponColumn1/Weapon3/Button")
 focus_neighbor_bottom = NodePath("../../Weapon8/Button")
 mouse_filter = 2
 action_mode = 0
-text = "WEAPON 7"
+text = "CAT SCRATCH"
 alignment = 0
 
 [node name="WeaponBar" type="TextureProgressBar" parent="MarginContainer/VSplitContainer/HBoxContainer/WeaponColumn2/Weapon7"]

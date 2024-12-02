@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dawppthhgehnh"]
+
+[ext_resource type="Script" path="res://Scripts/catman_slash.gd" id="1_nkiv4"]
+
+[node name="CatmanSlash" type="Node"]
+script = ExtResource("1_nkiv4")

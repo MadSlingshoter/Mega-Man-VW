@@ -17,6 +17,7 @@ extends Node
 @onready var pause_sound = $SoundPlayers/PauseSound
 @onready var recover_sound = $SoundPlayers/RecoverSound
 @onready var reflected_sound = $SoundPlayers/ReflectedSound
+@onready var slash_sound = $SoundPlayers/SlashSound
 @onready var stomp_sound = $SoundPlayers/StompSound
 
 func play_music(path: String):
@@ -70,6 +71,9 @@ func play_recover_sound():
 
 func play_relected_sound():
 	reflected_sound.play()
+
+func play_slash_sound():
+	slash_sound.play()
 
 func play_stomp_sound():
 	stomp_sound.play()

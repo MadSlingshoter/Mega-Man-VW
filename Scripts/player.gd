@@ -118,6 +118,10 @@ func switch_color():
 		Global.Weapon.bowser_fire:
 			new_color1 = Color(0.0, 0.51, 0.0)
 			new_color2 = Color(0.85, 0.6, 0.17)
+			
+		Global.Weapon.cat_scratch:
+			new_color1 = Color(0.5, 0.5, 0.5)
+			new_color2 = Color(0.97, 0.97, 0.97)
 	
 	animations.material.set("shader_parameter/new_color1", new_color1)
 	animations.material.set("shader_parameter/new_color2", new_color2)
