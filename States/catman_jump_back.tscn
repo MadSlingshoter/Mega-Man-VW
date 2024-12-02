@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chkw678lo3mth"]
+
+[ext_resource type="Script" path="res://Scripts/catman_jump_back.gd" id="1_ruch7"]
+
+[node name="CatmanJumpBack" type="Node"]
+script = ExtResource("1_ruch7")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://cds61asgr1vhl"]
+[gd_scene load_steps=70 format=3 uid="uid://cds61asgr1vhl"]
 
 [ext_resource type="Texture2D" uid="uid://c3vb2hu658gav" path="res://Art/Sprites/Mega Man/8bitMM_Idle.png" id="1_11kqb"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_vtugr"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bpess4ol3legu" path="res://Art/Sprites/Bars/HealthBar2.png" id="23_6xqno"]
 [ext_resource type="Texture2D" uid="uid://dccchyu36w7lh" path="res://Art/Sprites/Bars/HealthBar1.png" id="24_uxc72"]
 [ext_resource type="Script" path="res://Scripts/energy_bar.gd" id="25_hwnuu"]
+[ext_resource type="PackedScene" uid="uid://d3o4bhra8j1jl" path="res://Weapons/cat_scratch_state.tscn" id="28_spcjr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x1g4n"]
 shader = ExtResource("2_t28x3")
@@ -470,14 +471,17 @@ idle_state = NodePath("../PlayerIdle")
 fall_state = NodePath("../PlayerFall")
 animation_name = "climb"
 
-[node name="ShootingController" type="Node" parent="." node_paths=PackedStringArray("mega_buster", "bowser_fire")]
+[node name="ShootingController" type="Node" parent="." node_paths=PackedStringArray("mega_buster", "bowser_fire", "cat_scratch")]
 script = ExtResource("20_bt40j")
 mega_buster = NodePath("MegaBusterState")
 bowser_fire = NodePath("BowserFireState")
+cat_scratch = NodePath("CatScratchState")
 
 [node name="MegaBusterState" parent="ShootingController" instance=ExtResource("21_1e22s")]
 
 [node name="BowserFireState" parent="ShootingController" instance=ExtResource("22_3sybr")]
+
+[node name="CatScratchState" parent="ShootingController" instance=ExtResource("28_spcjr")]
 
 [node name="ShootingTimer" type="Timer" parent="."]
 process_callback = 0

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3o4bhra8j1jl"]
+
+[ext_resource type="Script" path="res://Scripts/cat_scratch_state.gd" id="1_ucmfg"]
+[ext_resource type="PackedScene" uid="uid://bwixjrewetau7" path="res://Weapons/cat_scratch.tscn" id="2_bmlhy"]
+
+[node name="CatScratchState" type="Node"]
+script = ExtResource("1_ucmfg")
+weapon = ExtResource("2_bmlhy")

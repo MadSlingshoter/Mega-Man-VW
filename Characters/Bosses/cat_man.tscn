@@ -1,0 +1,375 @@
+[gd_scene load_steps=44 format=3 uid="uid://dhg2olx6853kw"]
+
+[ext_resource type="Texture2D" uid="uid://46f234ifhsfn" path="res://Art/Sprites/Bosses/Cat Man.png" id="1_3gnkk"]
+[ext_resource type="Script" path="res://Scripts/cat_man.gd" id="1_4mqv5"]
+[ext_resource type="PackedScene" uid="uid://rjaurwq7ahs" path="res://Characters/Components/contact_box.tscn" id="2_hc225"]
+[ext_resource type="Texture2D" uid="uid://e6a01trxrib5" path="res://Art/Sprites/Bosses/Cat Man Effects.png" id="2_n1ws4"]
+[ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="3_87dn5"]
+[ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="4_to7et"]
+[ext_resource type="PackedScene" uid="uid://beg0amo70tn1y" path="res://States/boss_state_manager.tscn" id="6_rpuxp"]
+[ext_resource type="PackedScene" uid="uid://c4bphtyr6vx0h" path="res://Characters/Components/boss_health_bar.tscn" id="7_160yh"]
+[ext_resource type="PackedScene" uid="uid://gsvrly5jfckj" path="res://States/boss_death.tscn" id="7_mynw8"]
+[ext_resource type="PackedScene" uid="uid://cle0atmu5xwkg" path="res://States/boss_idle.tscn" id="8_ab1qx"]
+[ext_resource type="PackedScene" uid="uid://bc22v0sgmik2k" path="res://States/boss_intro.tscn" id="9_nq4pr"]
+[ext_resource type="PackedScene" uid="uid://bhabfa8j4tqvh" path="res://States/catman_wait.tscn" id="10_k7s52"]
+[ext_resource type="PackedScene" uid="uid://bop1ksrc5lqk2" path="res://States/catman_jump_forward.tscn" id="11_aqg28"]
+[ext_resource type="PackedScene" uid="uid://bubqurpemgk0x" path="res://States/catman_charge_slash.tscn" id="11_qlntg"]
+[ext_resource type="PackedScene" uid="uid://dawppthhgehnh" path="res://States/catman_slash.tscn" id="13_dow0e"]
+[ext_resource type="PackedScene" uid="uid://chkw678lo3mth" path="res://States/catman_jump_back.tscn" id="14_ccrgy"]
+[ext_resource type="PackedScene" uid="uid://vvugkqgxqshy" path="res://States/catman_dive.tscn" id="15_twvwg"]
+[ext_resource type="PackedScene" uid="uid://dfp61yfhtjdjn" path="res://Characters/Components/player_detector.tscn" id="18_amn5o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftxls"]
+atlas = ExtResource("1_3gnkk")
+region = Rect2(120, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvyfd"]
+atlas = ExtResource("1_3gnkk")
+region = Rect2(160, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqfmo"]
+atlas = ExtResource("1_3gnkk")
+region = Rect2(280, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0og71"]
+atlas = ExtResource("1_3gnkk")
+region = Rect2(0, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbn8u"]
+atlas = ExtResource("1_3gnkk")
+region = Rect2(40, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ao2t0"]
+atlas = ExtResource("1_3gnkk")
+region = Rect2(80, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o8ip"]
+atlas = ExtResource("1_3gnkk")
+region = Rect2(240, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep8jj"]
+atlas = ExtResource("1_3gnkk")
+region = Rect2(200, 0, 40, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yrsml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftxls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvyfd")
+}],
+"loop": true,
+"name": &"charge_slash",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqfmo")
+}],
+"loop": true,
+"name": &"dive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0og71")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbn8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao2t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbn8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao2t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbn8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao2t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbn8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao2t0")
+}],
+"loop": false,
+"name": &"intro",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o8ip")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep8jj")
+}],
+"loop": true,
+"name": &"slash",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_804oq"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_uiewt"]
+resource_name = "rest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0jov8"]
+_data = {
+"flash": SubResource("Animation_804oq"),
+"rest": SubResource("Animation_uiewt")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c32bf"]
+atlas = ExtResource("2_n1ws4")
+region = Rect2(0, 0, 88, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1cgn"]
+atlas = ExtResource("2_n1ws4")
+region = Rect2(88, 0, 88, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkao5"]
+atlas = ExtResource("2_n1ws4")
+region = Rect2(0, 48, 88, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0k2a"]
+atlas = ExtResource("2_n1ws4")
+region = Rect2(88, 48, 88, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5q0um"]
+atlas = ExtResource("2_n1ws4")
+region = Rect2(176, 48, 88, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_467w7"]
+atlas = ExtResource("2_n1ws4")
+region = Rect2(264, 48, 88, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxtx1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c32bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1cgn")
+}],
+"loop": true,
+"name": &"dive",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkao5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0k2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5q0um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_467w7")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5t3yk"]
+size = Vector2(18, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx3sy"]
+size = Vector2(20, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afhuj"]
+size = Vector2(20, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dao8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvsxa"]
+size = Vector2(38, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixxfp"]
+size = Vector2(86, 85)
+
+[node name="CatMan" type="CharacterBody2D"]
+position = Vector2(0, -16)
+collision_layer = 4
+script = ExtResource("1_4mqv5")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yrsml")
+animation = &"slash"
+
+[node name="EffectsAnimationPlayer" type="AnimationPlayer" parent="Animations"]
+libraries = {
+"": SubResource("AnimationLibrary_0jov8")
+}
+
+[node name="SlashAnimations" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_mxtx1")
+animation = &"slash"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_5t3yk")
+
+[node name="ContactBox" parent="." instance=ExtResource("2_hc225")]
+CONTACT_DAMAGE = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_rx3sy")
+
+[node name="Health" parent="." instance=ExtResource("3_87dn5")]
+HAS_INVULNERABILITY = true
+INVULNERABILITY_LENGTH = 0.5
+MAX_HEALTH = 28
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_to7et")]
+health = NodePath("../Health")
+bowser_fire_override = 1
+cat_scratch_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_afhuj")
+
+[node name="ContactBoxDive" parent="." instance=ExtResource("2_hc225")]
+CONTACT_DAMAGE = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBoxDive"]
+position = Vector2(18, 6)
+shape = SubResource("RectangleShape2D_dao8k")
+
+[node name="ContactBoxSlash" parent="." instance=ExtResource("2_hc225")]
+CONTACT_DAMAGE = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactBoxSlash"]
+position = Vector2(24, -2.5)
+shape = SubResource("RectangleShape2D_cvsxa")
+
+[node name="PlayerDetectorSlash" parent="." instance=ExtResource("18_amn5o")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectorSlash"]
+position = Vector2(0, -15.5)
+shape = SubResource("RectangleShape2D_ixxfp")
+debug_color = Color(0.580392, 0.54902, 0.121569, 0.419608)
+
+[node name="BossStateManager" parent="." node_paths=PackedStringArray("idle_state", "intro_state", "starting_state", "death_state") instance=ExtResource("6_rpuxp")]
+idle_state = NodePath("BossIdle")
+intro_state = NodePath("BossIntro")
+starting_state = NodePath("CatmanWait")
+death_state = NodePath("BossDeath")
+
+[node name="BossDeath" parent="BossStateManager" instance=ExtResource("7_mynw8")]
+animation_name = "idle"
+
+[node name="BossIdle" parent="BossStateManager" instance=ExtResource("8_ab1qx")]
+animation_name = "idle"
+
+[node name="BossIntro" parent="BossStateManager" instance=ExtResource("9_nq4pr")]
+animation_name = "idle"
+
+[node name="CatmanWait" parent="BossStateManager" node_paths=PackedStringArray("jump_forward_state", "jump_back_state", "charge_slash_state") instance=ExtResource("10_k7s52")]
+jump_forward_state = NodePath("../CatmanJumpForward")
+jump_back_state = NodePath("../CatmanJumpBack")
+charge_slash_state = NodePath("../CatmanChargeSlash")
+randf_from = 0.2
+randf_to = 1.0
+animation_name = "idle"
+
+[node name="CatmanJumpForward" parent="BossStateManager" node_paths=PackedStringArray("wait_state", "charge_slash_state") instance=ExtResource("11_aqg28")]
+wait_state = NodePath("../CatmanWait")
+charge_slash_state = NodePath("../CatmanChargeSlash")
+move_speed = 120.0
+animation_name = "jump"
+
+[node name="CatmanChargeSlash" parent="BossStateManager" node_paths=PackedStringArray("slash_state") instance=ExtResource("11_qlntg")]
+slash_state = NodePath("../CatmanSlash")
+animation_name = "charge_slash"
+
+[node name="CatmanSlash" parent="BossStateManager" node_paths=PackedStringArray("wait_state") instance=ExtResource("13_dow0e")]
+wait_state = NodePath("../CatmanWait")
+animation_name = "slash"
+
+[node name="CatmanJumpBack" parent="BossStateManager" node_paths=PackedStringArray("wait_state", "dive_state") instance=ExtResource("14_ccrgy")]
+wait_state = NodePath("../CatmanWait")
+dive_state = NodePath("../CatmanDive")
+JUMP_FORCE = -300.0
+move_speed = 150.0
+animation_name = "jump"
+
+[node name="CatmanDive" parent="BossStateManager" node_paths=PackedStringArray("wait_state") instance=ExtResource("15_twvwg")]
+wait_state = NodePath("../CatmanWait")
+move_speed = 180.0
+animation_name = "dive"
+
+[node name="BarCanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+
+[node name="BossHealthBar" parent="BarCanvasLayer" instance=ExtResource("7_160yh")]
+visible = true
+offset_left = -713.667
+offset_top = -268.0
+offset_right = -657.667
+offset_bottom = -260.0
+
+[node name="RayCastForward" type="RayCast2D" parent="."]
+target_position = Vector2(100, 0)
+hit_from_inside = true
+
+[node name="RayCastBack" type="RayCast2D" parent="."]
+target_position = Vector2(-50, 0)
+hit_from_inside = true
+
+[connection signal="health_damaged" from="Health" to="." method="_on_health_health_damaged"]
+[connection signal="invul_over" from="Health" to="." method="_on_health_invul_over"]
+[connection signal="killed" from="Health" to="." method="_on_health_killed"]
+[connection signal="add_collision" from="BossStateManager/BossIntro" to="." method="_on_boss_intro_add_collision"]
+[connection signal="pose_finished" from="BossStateManager/BossIntro" to="." method="_on_boss_intro_pose_finished"]

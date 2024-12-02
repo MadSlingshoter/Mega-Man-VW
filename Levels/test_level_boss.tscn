@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bp063vodx6yll" path="res://Levels/boss_gate.tscn" id="3_43c7g"]
 [ext_resource type="PackedScene" uid="uid://w5caejcxt3xh" path="res://Levels/boss_room.tscn" id="4_6nbjw"]
 [ext_resource type="PackedScene" uid="uid://be5wmlaf3vxs1" path="res://EnemySpawners/boss_spawner.tscn" id="5_b4mpq"]
-[ext_resource type="PackedScene" uid="uid://d3fini7tuvhkp" path="res://Characters/Bosses/bowser_man.tscn" id="6_g2rq4"]
+[ext_resource type="PackedScene" uid="uid://dhg2olx6853kw" path="res://Characters/Bosses/cat_man.tscn" id="7_mmdp4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_44jnq"]
 texture = ExtResource("1_le8g0")
@@ -199,7 +199,7 @@ position = Vector2(0, 160)
 
 [node name="BossSpawner" parent="Rooms/BossRoom" instance=ExtResource("5_b4mpq")]
 position = Vector2(208, 14)
-boss = ExtResource("6_g2rq4")
+boss = ExtResource("7_mmdp4")
 
 [node name="Checkpoint0" type="Node2D" parent="."]
 position = Vector2(123, 192)

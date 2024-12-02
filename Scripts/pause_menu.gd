@@ -52,6 +52,8 @@ func pause():
 			weapons_buttons[0].grab_focus()
 		Global.Weapon.bowser_fire:
 			weapons_buttons[1].grab_focus()
+		Global.Weapon.cat_scratch:
+			weapons_buttons[7].grab_focus()
 	
 	var energies = player.shooting_controller.get_energies()
 	for n in energies.size():
@@ -106,7 +108,9 @@ func _on_button6_pressed():
 	pass # Replace with function body.
 
 func _on_button7_pressed():
-	pass # Replace with function body.
+	switch_weapon(Global.Weapon.cat_scratch)
+	
+	unpause()
 
 func _on_button8_pressed():
 	pass # Replace with function body.

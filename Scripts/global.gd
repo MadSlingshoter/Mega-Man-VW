@@ -1,8 +1,8 @@
 extends Node
 
 enum TransitionDir {up, down, left, right}
-enum Weapon {mega_buster, bowser_fire, weapon2, weapon3, weapon4, weapon5, weapon6, weapon7, weapon8, enemy, hazard}
-enum Level {start_menu, stage_select, continue_menu, bowser_man, car_man, construction_man, waffle_man, police_man, lego_man, cat_man, antisora_man, test2, test_boss}
+enum Weapon {mega_buster, bowser_fire, car_wheel, constuction_bomb, waffle_missile, police_shock, lego_shield, cat_scratch, gold_tornado, enemy, hazard}
+enum Level {start_menu, stage_select, continue_menu, bowser_man, car_man, construction_man, waffle_man, police_man, lego_man, cat_man, gold_man, test2, test_boss}
 enum Pickup {random_drop, small_health, big_health, small_energy, big_energy, extra_life} # to add: tanks
 
 var curr_scene = null
@@ -24,9 +24,9 @@ var beaten_bowserman : bool = true
 var beaten_waffleman : bool = false
 var beaten_carman : bool = false
 var beaten_legoman : bool = false
-var beaten_catman : bool = false
+var beaten_catman : bool = true
 var beaten_constructionman : bool = false
-var beaten_shadowsoraman : bool = false
+var beaten_goldman : bool = false
 var beaten_policeman : bool = false
 var beaten_wily1 : bool = false
 var beaten_wily2 : bool = false
