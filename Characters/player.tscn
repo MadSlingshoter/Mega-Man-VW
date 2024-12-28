@@ -16,8 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://ime740wavl2t" path="res://Characters/Components/hurtbox.tscn" id="10_4yjsd"]
 [ext_resource type="PackedScene" uid="uid://npju2vv1s2jw" path="res://Characters/Components/health.tscn" id="10_a65bd"]
 [ext_resource type="PackedScene" uid="uid://cq2urn2ktk5c5" path="res://Menus/pause_menu.tscn" id="10_kp53s"]
-[ext_resource type="Script" path="res://Scripts/DeathAreaDetector.gd" id="13_0ai8q"]
 [ext_resource type="PackedScene" uid="uid://bhnw3s4h8h0yc" path="res://States/player_move.tscn" id="13_lmxds"]
+[ext_resource type="Script" path="res://Scripts/death_area_detector.gd" id="13_xufus"]
 [ext_resource type="PackedScene" uid="uid://b8m5mvq8oe0fo" path="res://States/player_idle.tscn" id="14_5jrtt"]
 [ext_resource type="PackedScene" uid="uid://4jfqdfp0tvxe" path="res://States/player_fall.tscn" id="14_87mn2"]
 [ext_resource type="Script" path="res://Scripts/RoomDetector.gd" id="14_fxkgw"]
@@ -350,7 +350,7 @@ disabled = true
 [node name="DeathAreaDetector" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 512
 collision_mask = 64
-script = ExtResource("13_0ai8q")
+script = ExtResource("13_xufus")
 health = NodePath("../Health")
 
 [node name="DeathAreaBox" type="CollisionShape2D" parent="DeathAreaDetector"]

@@ -1,6 +1,18 @@
 extends CharacterBody2D
+## Class for the Koopa Troopa enemy.
+##
+## Classic Koopa Troopa from Super Mario Bros. Walks. Turns around if it touches a wall or a 
+## platform edge. If hit, will hide in its shell for a moment, blocking all damage.
+## Unlike Mario games, cannot damage it by jumping on it and the shell cannot be kicked. 
 
-@export var SPEED : float
+## The different states the enemy can be in.
+enum State {
+	WALK, ## Walking slowly.
+	HIDE, ## Hiding in its shell.
+	EMERGING, ## Emerging soon from its shell.
+}
+
+@export var speed : float
 @export var MAX_HIDE_TIME : float
 @export var MAX_EMERGING_TIME : float
 
@@ -8,14 +20,12 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction = 1
 
-enum State {walk, hide, emerging}
-var state = State.walk
+var state = State.WALK
 var time : float = -2.0
 
 @onready var animations = $Animations
 @onready var raycast_side = $RayCastSide
 @onready var raycast_down = $RayCastDown
-@onready var health = $Health
 @onready var hurt_collision_walk = $Hurtbox/CollisionShapeWalk
 @onready var contact_collision_walk = $ContactBox/CollisionShapeWalk
 @onready var contact_collision_hide = $ContactBox/CollisionShapeHide
@@ -34,7 +44,7 @@ func _process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	if state == State.walk:
+	if state == State.WALK:
 		move_character()
 #		detect_turn_around()
 		# for some reason, need two delta wait time before checking for ground?
@@ -46,19 +56,19 @@ func _process(delta):
 			detect_turn_around()
 		animations.play("walk")
 	
-	elif state == State.hide:
+	elif state == State.HIDE:
 		time += delta
 		animations.play("hide")
 		if time > MAX_HIDE_TIME:
 			time = 0.0
-			state = State.emerging
+			state = State.EMERGING
 	
-	elif state == State.emerging:
+	elif state == State.EMERGING:
 		time += delta
 		animations.play("emerging")
 		if time > MAX_EMERGING_TIME:
 			time = 0.0
-			state = State.walk
+			state = State.WALK
 			hurt_collision_walk.set_deferred("disabled", false)
 			contact_collision_walk.set_deferred("disabled", false)
 			contact_collision_hide.set_deferred("disabled", true)
@@ -67,7 +77,7 @@ func _process(delta):
 	move_and_slide()
 
 func move_character():
-	velocity.x = SPEED * direction
+	velocity.x = speed * direction
 
 func detect_turn_around():
 	if raycast_side.is_colliding() or (!raycast_down.is_colliding() and is_on_floor()):
@@ -80,7 +90,7 @@ func turn_around():
 
 func _on_health_health_damaged(_health):
 	velocity.x = 0.0
-	state = State.hide
+	state = State.HIDE
 	hurt_collision_walk.set_deferred("disabled", true)
 	contact_collision_walk.set_deferred("disabled", true)
 	contact_collision_hide.set_deferred("disabled", false)

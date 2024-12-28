@@ -43,7 +43,6 @@ size = Vector2(16, 16)
 position = Vector2(0, -8)
 collision_layer = 4
 script = ExtResource("1_qiye4")
-SPEED = 40.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

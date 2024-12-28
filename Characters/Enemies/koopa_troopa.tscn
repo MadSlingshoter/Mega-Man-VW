@@ -82,7 +82,6 @@ animations = [{
 position = Vector2(0, -12)
 collision_layer = 4
 script = ExtResource("1_2nsbv")
-SPEED = 40.0
 MAX_HIDE_TIME = 1.2
 MAX_EMERGING_TIME = 0.6
 

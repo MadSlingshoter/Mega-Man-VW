@@ -48,7 +48,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_vfben")
 }],
 "loop": true,
-"name": &"run",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -70,7 +70,7 @@ shape = SubResource("RectangleShape2D_slvkg")
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -10)
 sprite_frames = SubResource("SpriteFrames_55cpd")
-animation = &"idle"
+animation = &"walk"
 
 [node name="Health" parent="." instance=ExtResource("2_oxc20")]
 MAX_HEALTH = 2
@@ -101,7 +101,7 @@ position = Vector2(0, -8)
 process_callback = 0
 one_shot = true
 
-[node name="RunTimer" type="Timer" parent="."]
+[node name="WalkTimer" type="Timer" parent="."]
 process_callback = 0
 one_shot = true
 
@@ -116,4 +116,4 @@ target_position = Vector2(11, 0)
 [connection signal="killed" from="Health" to="." method="_on_health_killed"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
-[connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
+[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

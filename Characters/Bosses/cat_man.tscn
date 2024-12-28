@@ -270,10 +270,10 @@ HAS_INVULNERABILITY = true
 INVULNERABILITY_LENGTH = 0.5
 MAX_HEALTH = 28
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_to7et")]
-health = NodePath("../Health")
+[node name="Hurtbox" parent="." instance=ExtResource("4_to7et")]
 bowser_fire_override = 1
 cat_scratch_override = 1
+health = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 1.5)
